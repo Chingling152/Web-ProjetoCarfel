@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/default.css">
+    <link rel="stylesheet" href="../CSS/Login.css">
+    <script src="../Javascript/default.js"></script>
+    <title>Login\Cadastro</title>
+</head>
+<body>
+        <!-- Pop Up-->
+        <section id="login-cadastro" class="flex-column hidden" onclick="PopUp();">
+            <h2>Lorem ipsum</h2>
+            <p>Ah eu sei lá o que colocar aqui ;-; mas ficaria bonitinho</p>
+        </section>   
+        
+        <section id="login" class="border-container rounded-container-full hidden">
+            <h2>Login</h2>
+            <form action="#" method="post" >
+                <label>Email : 
+                    <input type="email" name="Email" required>
+                </label>
+                <label>Senha :
+                    <input type="password" name="Senha" required>
+                </label>
+                <input type="submit" value="Fazer Login">
+            </form>
+        </section>
+        
+        <section id="registrar" class="border-container rounded-container-full hidden">
+            <h2>Registrar-se</h2>
+            <form action="#" method="post">
+                <label>Nome : 
+                    <input type="text" name="Nome" maxlength="80" required>
+                </label>
+                <label>Email : 
+                    <input type="email" name="Email" required>
+                </label>
+                <label>Confirmar Email : 
+                    <input type="email" name="CEmail" required>
+                </label>
+                <label>Senha :
+                    <input type="text" name="Senha" required>
+                </label>
+                <label>Confirmar :
+                    <input type="text" name="CSenha" required>
+                </label>
+                <input type="submit" value="Cadastrar-se">
+            </form>
+        </section>
+    <!----->
+</body>
+</html>

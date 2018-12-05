@@ -1,0 +1,43 @@
+/*menu*/
+.menu{
+    justify-content: space-evenly;
+}
+
+.menu-option{
+    margin:1em 1em;
+    max-height: 340px;
+    max-width: 25%;
+}
+
+.menu-option > div:last-child{
+    transform: translateY(-60px);
+    height: 20%;
+    background-color: white;
+    margin: -2px;
+}
+
+.menu-option > div:last-child a{
+    font-weight: 900;
+    color:#4F4D4D;
+    font-size: 1.2em;
+}
+.menu-option > div:last-child:hover{
+    background-color:#C9C9C9; 
+}
+
+.menu-option img{
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+/*Comentarios*/
+
+.comment-container > a{
+    color: black;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.comment-container > a:hover{
+    color:#4F4D4D;
+}

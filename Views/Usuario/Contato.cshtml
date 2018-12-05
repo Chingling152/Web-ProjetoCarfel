@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../CSS/Contato.css">
+    <title>Contato</title>
+</head>
+<body>
+    <section class="content">
+        <h1>Entrando em contado conosco</h1>
+        <div class="flex-container">
+            <section class="rounded-container-full border-container ">
+                <h2>Nos envie uma mensagem</h2>
+                <form action="#" method="get" class="flex-column">
+                    <label>Nome : 
+                        <input type="text" name="Nome" maxlength="80" required >
+                    </label>
+                    <label>Email : 
+                        <input type="email" name="Email" maxlength="80" required>
+                    </label>
+                    <label>Assunto : 
+                        <input type="text" name="Nome" maxlength="80" required>
+                    </label>
+                    <label>Mensagem : <br>
+                        <textarea name="Mensagem" cols="40" rows="10" minlength="15" maxlength="500" required></textarea>
+                    </label>
+                    <input type="submit" value="Enviar">
+                </form>
+            </section>
+            <section class="map-outer border-container rounded-container-full">
+                <h2>Onde nos encontrar</h2>
+                <div class="gmap-canvas">
+                    <iframe src="https://maps.google.com/maps?q=Bar%C3%A3o%20de%20limeira%20%2C%20539&t=&z=19&ie=UTF8&iwloc=&output=embed"></iframe>
+                </div>
+                <div>
+                    <p>Av. Lorem Ipsum</p>
+                    <p>Tel. : (99) 99999-9999</p>
+                    <p>Email : email@dominio.com</p>
+                </div>
+            </section>
+        </div>
+    </section>
+</body>
+</html>

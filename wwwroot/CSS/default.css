@@ -1,0 +1,276 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Nunito Sans' ,sans-serif , Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+/*Tags*/
+a{
+    text-decoration: none;
+    z-index: 0;
+    cursor: pointer;
+}
+
+section > h1:first-child , section > h2:first-child{
+    text-align: center;
+    padding: 0.3em 0em 0.75em 0em;
+}
+
+h1 , h2 , h3 , p {
+    cursor: default;
+}
+
+h1{
+    font-size: 2em;
+}
+
+h2{
+    font-size: 1.777em;
+}
+
+h3{
+    font-size:1.625em;
+}
+
+/*Global*/
+.content{
+    padding: 1em;
+}
+
+.hidden{
+    width: 0px!important;
+    display: none!important;
+    position: static!important;
+}
+/**Container arredondado**/
+
+.rounded-container-full{
+    border-radius: 2em 2em 2em 2em;
+}
+
+.rounded-container-top{
+    border-radius: 2em 2em  0em 0em;
+}
+
+.rounded-container-bottom{
+    border-radius: 0em 0em 2em 2em;
+}
+
+.border-container{
+    border:2px solid #4f4d4d;
+    overflow: hidden;
+}
+
+/* display:flex */
+
+.flex-container{
+    display:flex;
+}
+
+.flex-centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-column-reverse{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.flex-row-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.evenly-container{
+    justify-content: space-evenly;
+}
+
+/*Header*/
+.header a:first-child img{
+    max-width: 32px;
+}
+
+.header{
+    padding:1% 2% 0% 0%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header a{
+    color: white;
+    padding:0.3em 0.5em; 
+}
+
+.header a:first-child:hover{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.header a:hover{
+    background-color: rgba(255, 255, 255, 0.24);
+}
+
+.top{
+    height: 480px;/*320*/
+    background: url("../Resources/Shared/top-banner.jpeg");
+    background-size: cover;
+    background-position: 80% 80%;/*80% 76%*/
+}
+
+/* a */
+.custom-button{
+    background-color:white; 
+    border: 2px solid #4F4D4D;
+    color:black;
+    
+    text-align: center;
+    position: relative;
+    padding: 0.4em;
+    width: 200px;
+    margin: 0.5em auto 0.75em auto;
+}
+
+.custom-button:hover , .custom-button:focus{
+    outline: none;
+    font-weight: 600;
+    background-color:rgba(255, 255, 255, 0.24);
+}
+
+/*Comentario*/
+
+.comment-container{
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    padding: 0em 1em;
+    justify-content: space-evenly;
+}
+
+.comment{
+    background-color: #C9C9C9;
+    margin:1.75em 0.75em;
+    padding: 0.75em;
+    width: 45%;
+}
+
+.comment > div{
+    margin: 0.75em 1em;
+}
+
+/*Nome usuario*/
+.comment > div > a{
+    color:white;
+    font-weight: 500;
+    font-size: 1.25em;
+    transition: color 0.5s;
+}
+
+.comment > div > a:hover{
+    color: black;
+}
+
+/*Citação*/
+.quote{
+    margin: 1em 0em 0em 0em;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.quote::after , .quote::before{
+    content: " \" ";
+}
+
+/*Foto perfil*/
+.profile-pic{
+    border:3px solid #4F4D4D;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+}
+
+/* Form */
+
+form > label{
+    padding: 0.45em 0em;
+}
+
+form input , textarea{
+    border-radius:2.5px; 
+    background-color: white;
+    width: 100%;
+    border: 1px solid black;
+    resize: none;
+}
+
+form input:focus , form textarea:focus{
+    border: 2px solid black;
+    outline: none;
+}
+
+form input:last-child:hover , form textarea:hover{
+    background-color: rgba(255, 255, 255, 0.24);    
+}
+
+form textarea{
+    margin-bottom: 2em;
+}
+
+/* POP UP */
+#login-cadastro{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);   
+    z-index: 1; 
+    cursor: pointer;
+    padding-top:100px;
+}
+#login-cadastro > p, #login-cadastro > h2{
+    text-align: center;
+    color: white;
+    font-weight: 700;
+}
+
+#login , #registrar{
+    position: fixed;
+    width: 25%;
+    z-index: 9!important;
+    background-color: rgb(151, 151, 151);
+    padding: 0.75em 2em 2em 2em;
+    border: 1px solid black;
+    z-index: 3; 
+}
+
+#registrar{
+    top: 250px;
+    right:350px;
+}
+
+#login{
+    top:300px;
+    left:350px;
+    height: 280px;
+}
+
+#login label , #registrar label{
+    margin: 0em 0em 0.3em 0em;
+}
+
+form > input:last-child{
+    margin-top: 1em;
+}
+
+/* footer */
+footer{
+    background-color: white; 
+    cursor: default;
+    margin-top: 0.7em;
+    padding: 1em 0em 0.5em 1.7em;
+}

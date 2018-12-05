@@ -1,0 +1,60 @@
+/* Polaroids */
+.polaroids{
+    padding: 0em 5em;
+}
+
+.polaroids > div{
+    display:grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+}
+
+.polaroids > div > p {
+    margin: 1em;
+}
+
+/* Polaroid */
+.polaroid{
+    padding: 2em 2em 1em 2em;
+    margin: 1em 1em 1em 1em;
+}
+
+.polaroid img , .polaroid div{
+    cursor: pointer;
+    height: 320px;
+    filter: blur(1px) brightness(0);
+    -webkit-filter: blur(1px) brightness(0);
+    transition : -webkit-filter 1.5s linear;
+    background-color: black;
+}
+
+.polaroid img:hover{
+    filter: brightness(1);
+    filter: blur(0px);
+}
+
+.polaroid p{
+    font-weight: 600;
+    text-align: center;
+}
+
+.polaroid p:nth-child(2){
+    margin-top: 1em;
+}
+
+/*Exclusivdade do Tsuka*/
+.polaroids > div:nth-child(2){
+    grid-template-columns: 70% 32.5%!important;
+}
+
+.polaroids > div:nth-child(2) > p{
+    text-align: end;
+} 
+
+#story{
+    padding: 0em 5em 1em 5em;
+}
+
+#story > h2{
+    margin:1em 0em; 
+}

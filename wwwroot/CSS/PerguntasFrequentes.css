@@ -1,0 +1,53 @@
+/* Sumario */
+#float-summary{
+    float: left;
+    padding: 1em;
+    margin-right: 2em;
+    width: 232px;
+}
+
+#float-summary > h2{
+    text-indent: 1em;
+    margin: 0em  0em 0.5em 0em;
+}
+
+.content >h2{
+    text-indent: 5em;
+}
+
+#float-summary > ul{
+    padding-left: 1em;
+}
+
+section{
+    padding: 2em;
+}
+
+/* Questões*/
+#questions{
+    padding-top: 1em;
+    width: 75%;
+    flex-wrap: wrap;
+}
+
+#questions > li{
+    list-style-type: none;
+    width:40%;
+    margin: 1em;
+}
+
+#questions > li h2{
+    margin-bottom:10px; 
+}
+
+#questions > li:last-child{
+    width: 80%;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    color: #4f4d4d;
+}

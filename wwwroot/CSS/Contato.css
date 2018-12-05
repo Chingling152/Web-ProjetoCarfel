@@ -1,0 +1,41 @@
+.content > div {
+    justify-content: space-evenly;
+}
+.content > div > section{
+    margin: 1em;
+}
+
+/* Mapa */
+.gmap-canvas {
+    overflow:hidden;
+    background:none!important;  
+}
+
+.gmap-canvas iframe{
+    width:600px;
+    height:500px;
+    border:0px;
+}
+
+.map-outer h2{
+    padding-bottom:0.75em!important; 
+}
+
+.map-outer > div:last-child{
+    padding: 0.75em 0em;
+}
+
+.map-outer > div:last-child > p {
+    cursor: text;
+    text-align: center;
+    font-weight: 600;
+}
+
+/*form*/
+.content section{
+    background-color: #C9C9C9;
+}
+
+.content section:first-child{
+    padding: 1em 3.5em 1em 3.5em;
+}

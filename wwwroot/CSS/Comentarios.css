@@ -1,0 +1,23 @@
+form img{
+    width: 64px!important;
+    height: 64px!important;
+}
+
+form{
+    width: 50%;
+    margin: auto;
+}
+
+form > div > label{
+    font-weight: 600;
+    margin:1.3em 1em 0em 1.1em;
+}
+
+form > div{
+    margin: 1em;
+    padding: 0.2em;
+}
+form > input{
+    padding: 0.4em;
+    width: auto;
+}

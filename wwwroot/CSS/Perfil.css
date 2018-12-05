@@ -1,0 +1,13 @@
+.profile{
+    margin:1em 0px; 
+    padding: 1em;
+    width: 75%;
+}
+
+.profile .pic{
+    margin: 0em 3em 0em 1em;
+}
+
+.profile #adm-buttons{
+    margin-left:4em; 
+}
