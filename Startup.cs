@@ -15,6 +15,10 @@ namespace Web_ProjetoCarfel
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddSession(
+                options => options.IdleTimeout = TimeSpan.FromMinutes(30)
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,10 +29,15 @@ namespace Web_ProjetoCarfel
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.UseSession();
+            app.UseStaticFiles();
+
+            app.UseMvc(
+                routes => routes.MapRoute(
+                    name: "default",
+                    template:"{controller=Usuario}/{action=PaginaInicial}"
+                )
+            );
         }
     }
 }
