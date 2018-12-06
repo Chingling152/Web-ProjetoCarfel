@@ -15,17 +15,16 @@ namespace Web_ProjetoCarfel.Util
         public bool DataValida(DateTime data)
         {
             DateTime agora = DateTime.Now;
-            if(agora.Year - data.Year < 18 || agora.Year - data.Year > 100){
+            int idade = agora.Year - data.Year;
+            if(idade <= 18 || idade >= 100){
                 return false;
             }else{
-                if(agora.Month > data.Month){
+                if(idade == 18 && agora.Month > data.Month){
+                    return false;
+                }else if(idade == 18 && agora.Day > data.Day){
                     return false;
                 }else{
-                    if(agora.Day > data.Day){
-                        return false;
-                    }else{
-                        return true;
-                    }
+                    return true;
                 }
             }
         }

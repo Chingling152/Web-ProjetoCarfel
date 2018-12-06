@@ -62,7 +62,7 @@ namespace Web_ProjetoCarfel.Controllers
                 string nome = form["Nome"]; 
                 string email = form["Email"];
                 string senha = form["Senha"];
-                DateTime dataNascimento = DateTime.Parse(form["DataNascimento"]);
+                DateTime dataNascimento = DateTime.Parse(form["Data"]);
 
                 if(!ValidacaoUsuario.Equals(email,form["CEmail"])){
                     mensagem = "O email confirmado não é igual ao registrado";
