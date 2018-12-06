@@ -32,5 +32,9 @@ namespace Web_ProjetoCarfel.Controllers
             @ViewBag.Titulo = "Sobre nós";
             return View();
         }
+        [HttpPost]
+        public IActionResult Login(){
+            return RedirectToAction("PaginaInicial");
+        }
     }
 }
