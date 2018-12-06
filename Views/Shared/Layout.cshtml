@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@ViewBag.Titulo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/default.css">
     <script src="../Javascript/default.js"></script>
+    <title>@ViewBag.Titulo</title>
 </head>
 <body>
+    @Html.Partial("Partes/PopUp.cshtml")
     @Html.Partial("Partes/Header.cshtml")
     @RenderBody()
     @Html.Partial("Partes/Footer.cshtml")

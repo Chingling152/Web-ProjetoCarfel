@@ -6,18 +6,25 @@ using Web_ProjetoCarfel.Interfaces;
 using Web_ProjetoCarfel.Models;
 using Web_ProjetoCarfel.Util;
 
-namespace Web_TesteCadastroMVC.Repositorio
+namespace Web_ProjetoCarfel.Repositorio
 {
     public class UsuarioDatabaseSerializado : IUsuario
     {
         /// <summary>
-        /// Caminho onde será salvo os usuarios
+        /// Caminho onde será salvo\importado os usuarios
         /// </summary>
         private const string caminho = "Databases/Usuario.dat";
+
+        /// <summary>
+        /// Classe de validação de usuario  
+        /// Usado para tratar qualquer erro
+        /// </summary>
+        /// <returns></returns>
         private IValidacaoUsuario validacao = new ValidacaoUsuarioSerializado();
-
+        /// <summary>
+        /// Lista de usuarios salvos , só podem ser acessados atraves desta class
+        /// </summary>
         private List<Usuario> usuariosSalvos;
-
         /// <summary>
         /// Construtor da classe usuario 
         /// Verifica se existe um arquivo no caminho especificado e cria uma lista de usuarios
@@ -28,7 +35,13 @@ namespace Web_TesteCadastroMVC.Repositorio
         }
         
         #region CRUM
-        
+        /// <summary>
+        /// Valida o usuario 
+        /// Se o usuario estiver com os valores validados 
+        /// Ele é adicionado na lista de usuarios e serializado
+        /// </summary>
+        /// <param name="usuario">O Usuario a ser cadastrado</param>
+        /// <returns>O Usuario cadastrado ou null se for invalido</returns>
         public Usuario Cadastrar(Usuario usuario)
         {           
             usuariosSalvos.Add(usuario);
@@ -36,7 +49,14 @@ namespace Web_TesteCadastroMVC.Repositorio
 
             return usuario;
         }
-
+        /// <summary>
+        /// Remove o usuario no id selecionado
+        /// </summary>
+        /// <param name="id">id a ser procurado</param>
+        /// <returns>
+        /// Retorna true se o usuario existir  
+        /// Retorna false se o usuario não existir ou a id não existir
+        /// </returns>
         public bool Excluir(string id){
             Usuario user = Procurar(id);
 
@@ -51,6 +71,11 @@ namespace Web_TesteCadastroMVC.Repositorio
         }
         #endregion
         #region Procura
+        /// <summary>
+        /// Procura o usuario no ID selecionado
+        /// </summary>
+        /// <param name="id">ID do usuario a ser procurado</param>
+        /// <returns>Retorna um usuario ou null caso o mesmo não exista</returns>
         public Usuario Procurar(string id){
             Usuario user = null;
             foreach (Usuario item in usuariosSalvos)
@@ -62,7 +87,11 @@ namespace Web_TesteCadastroMVC.Repositorio
             }
             return user;
         }
-
+        /// <summary>
+        /// Procura o ID do usuario pela posição na lista
+        /// </summary>
+        /// <param name="usuario">O Usuario a ser procurado</param>
+        /// <returns>O ID do usuario</returns>
         public int ProcurarIndex(Usuario usuario){
             int index = 0;
 
@@ -75,17 +104,28 @@ namespace Web_TesteCadastroMVC.Repositorio
             }
             return -1;
         }
-
+        /// <summary>
+        /// Substitui o usuario na lista de usuarios , baseando se no ID do novo usuario
+        /// </summary>
+        /// <param name="usuario">Novo usuario</param>
+        /// <returns>Retonar o novo usuario</returns>
         public Usuario Editar(Usuario usuario)
         {
             int index = ProcurarIndex(usuario);
             usuariosSalvos.RemoveAt(index);
             usuariosSalvos.Insert(index,usuario);
+            Serializar();
             return usuario;
         }
         #endregion
         
         #region Verificação
+        /// <summary>
+        /// Procura o usuario no banco de dados e retorna o mesmo tiver a combinação correta de senha e email
+        /// </summary>
+        /// <param name="email">Email do usuario</param>
+        /// <param name="senha">Senha do usuario</param>
+        /// <returns>Retona o usuario logado , caso a combinação não exista retorna null</returns>
         public Usuario Logar(string email, string senha)
         {
             Usuario usuario = null;
@@ -105,6 +145,9 @@ namespace Web_TesteCadastroMVC.Repositorio
         #endregion
 
         #region Salvar e carregar
+        /// <summary>
+        /// Salva a lista de usuarios em um arquivo .dat
+        /// </summary>
         private void Serializar()
         {
             MemoryStream memoria = new MemoryStream();
@@ -113,6 +156,10 @@ namespace Web_TesteCadastroMVC.Repositorio
             File.WriteAllBytes(caminho,memoria.ToArray());
             Listar();
         }
+        /// <summary>
+        /// Le todos os bites do arquivo .dat e retona-os em forma de uma lista de usuarios
+        /// </summary>
+        /// <returns>Retorna uma Lista de usuarios</returns>
         public List<Usuario> Listar()
         {          
             byte[] retorno = File.ReadAllBytes(caminho);//cria array de bytes e le o arquivo .dat
