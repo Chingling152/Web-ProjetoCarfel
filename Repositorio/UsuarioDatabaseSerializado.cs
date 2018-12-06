@@ -26,9 +26,12 @@ namespace Web_ProjetoCarfel.Repositorio
         /// </summary>
         public UsuarioDatabaseSerializado(){
             bool existe = System.IO.File.Exists(caminho);
-            Console.WriteLine(existe);
+            //Console.WriteLine(existe);
             usuariosSalvos = existe?Listar():new List<Usuario>();
             Serializar();
+            /*Usuario user = Procurar("1");
+            Console.Write($"\nID : {user.ID}\nNome {user.Nome}\n{user.Email}\n{user.Admin}\n{user.Senha}\n{user.dataCriacao}\n{user.dataNascimento}\n");
+            */
         }
         
         #region CRUM

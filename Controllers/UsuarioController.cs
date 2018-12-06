@@ -82,7 +82,7 @@ namespace Web_ProjetoCarfel.Controllers
                 mensagem = $"Erro : \n {erro.Message} \n Contate o programador que fez isso e lhe de um socão nas costas dele ;-;";
             }finally{
                 @ViewBag.Mensagem = mensagem;
-                Console.WriteLine(mensagem);
+                //Console.WriteLine(mensagem);
             }
             return RedirectToAction("PaginaInicial");
         }
