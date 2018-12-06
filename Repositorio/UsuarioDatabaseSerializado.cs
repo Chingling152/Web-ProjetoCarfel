@@ -26,7 +26,9 @@ namespace Web_ProjetoCarfel.Repositorio
         /// </summary>
         public UsuarioDatabaseSerializado(){
             bool existe = System.IO.File.Exists(caminho);
+            Console.WriteLine(existe);
             usuariosSalvos = existe?Listar():new List<Usuario>();
+            Serializar();
         }
         
         #region CRUM
@@ -41,7 +43,6 @@ namespace Web_ProjetoCarfel.Repositorio
         {           
             usuariosSalvos.Add(usuario);
             Serializar();
-
             return usuario;
         }
         /// <summary>
@@ -156,7 +157,7 @@ namespace Web_ProjetoCarfel.Repositorio
         /// </summary>
         /// <returns>Retorna uma Lista de usuarios</returns>
         public List<Usuario> Listar()
-        {          
+        {   
             byte[] retorno = File.ReadAllBytes(caminho);//cria array de bytes e le o arquivo .dat
             MemoryStream memoria = new MemoryStream(retorno);//le a array de bytes e armazena na memoria
             BinaryFormatter deserializador = new BinaryFormatter(); //criar um fomatador de binarios para converter bytes em objeto

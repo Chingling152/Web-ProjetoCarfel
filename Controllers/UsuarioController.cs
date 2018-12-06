@@ -10,7 +10,7 @@ namespace Web_ProjetoCarfel.Controllers
 {
     public class UsuarioController : Controller
     {
-        
+        private Usuario usuarioLogado = null;
         /// <summary>
         /// Classe de validação de usuario  
         /// Usado para tratar qualquer erro
@@ -20,7 +20,7 @@ namespace Web_ProjetoCarfel.Controllers
         /// <summary>
         /// Classe que manuseia o banco de dados
         /// </summary>
-        private UsuarioDatabaseSerializado database = new UsuarioDatabaseSerializado();
+        private IUsuario database = new UsuarioDatabaseSerializado();
 
         [HttpGet]
         public IActionResult PaginaInicial(){
@@ -62,7 +62,7 @@ namespace Web_ProjetoCarfel.Controllers
                 string nome = form["Nome"]; 
                 string email = form["Email"];
                 string senha = form["Senha"];
-                DateTime dataNascimento = DateTime.Parse(form[""]);
+                DateTime dataNascimento = DateTime.Parse(form["DataNascimento"]);
 
                 if(!ValidacaoUsuario.Equals(email,form["CEmail"])){
                     mensagem = "O email confirmado não é igual ao registrado";
@@ -74,15 +74,16 @@ namespace Web_ProjetoCarfel.Controllers
                         mensagem = validacao.ValidarUsuario(usuario,database.Listar());
 
                         if(mensagem == $"Usuario {usuario.Nome} cadastrado com sucesso no id {usuario.ID} !"){
-                            database.Cadastrar(usuario);
+                            usuarioLogado = database.Cadastrar(usuario);
                         }
                     }
                 }
             }catch(Exception erro){
                 mensagem = $"Erro : \n {erro.Message} \n Contate o programador que fez isso e lhe de um socão nas costas dele ;-;";
+            }finally{
+                @ViewBag.Mensagem = mensagem;
+                Console.WriteLine(mensagem);
             }
-            @ViewBag.Mensagem = mensagem;
-            @ViewBag.Titulo = "Pagina Inicial";
             return RedirectToAction("PaginaInicial");
         }
     }

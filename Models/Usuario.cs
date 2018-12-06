@@ -3,6 +3,7 @@ using System.IO;
 
 namespace Web_ProjetoCarfel.Models
 {
+    [System.Serializable]
     public class Usuario
     {
         /// <summary>
