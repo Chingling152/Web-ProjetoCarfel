@@ -5,7 +5,7 @@ using Web_ProjetoCarfel.Models;
 
 namespace Web_ProjetoCarfel.Util
 {
-    public class ValidacaoUsuarioSerializado : IValidacaoUsuario
+    public class ValidacaoUsuario: IValidacaoUsuario
     {
         /// <summary>
         /// Verifica se a data atual subtraida poela data inserida fica entre 18 e 100
@@ -78,6 +78,18 @@ namespace Web_ProjetoCarfel.Util
                 return "Idade invalida !";
             }
             return $"Usuario {user.Nome} cadastrado com sucesso no id {user.ID} !";
+        }
+
+        /// <summary>
+        /// Verifica se 2 strings são iguais
+        /// </summary>
+        /// <returns>Retorna true se ambas strings forem iguais</returns>
+        public static bool Equals(string obj, string obj2){
+            if(obj == obj2){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 }

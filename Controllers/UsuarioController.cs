@@ -1,6 +1,8 @@
+using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web_ProjetoCarfel.Interfaces;
+using Web_ProjetoCarfel.Models;
 using Web_ProjetoCarfel.Repositorio;
 using Web_ProjetoCarfel.Util;
 
@@ -13,7 +15,7 @@ namespace Web_ProjetoCarfel.Controllers
         /// Classe de validação de usuario  
         /// Usado para tratar qualquer erro
         /// </summary>
-        private IValidacaoUsuario validacao = new ValidacaoUsuarioSerializado();
+        private IValidacaoUsuario validacao = new ValidacaoUsuario();
     
         /// <summary>
         /// Classe que manuseia o banco de dados
@@ -51,10 +53,36 @@ namespace Web_ProjetoCarfel.Controllers
         }
         [HttpPost]
         public IActionResult Registrar(IFormCollection form){
-            int id = database.Listar().Count + 1;
-            string nome = form["Nome"]; 
-            string email = form["Email"];
-            string senha = form["Senha"];
+
+            string mensagem = "";
+
+            try{
+
+                int id = database.Listar().Count + 1;
+                string nome = form["Nome"]; 
+                string email = form["Email"];
+                string senha = form["Senha"];
+                DateTime dataNascimento = DateTime.Parse(form[""]);
+
+                if(!ValidacaoUsuario.Equals(email,form["CEmail"])){
+                    mensagem = "O email confirmado não é igual ao registrado";
+                }else{
+                    if(!ValidacaoUsuario.Equals(senha,form["CSenha"])){
+                        mensagem = "A senha inserida não é a igual a de confirmação";
+                    }else{
+                        Usuario usuario = new Usuario(id,nome,email,senha,dataNascimento);
+                        mensagem = validacao.ValidarUsuario(usuario,database.Listar());
+
+                        if(mensagem == $"Usuario {usuario.Nome} cadastrado com sucesso no id {usuario.ID} !"){
+                            database.Cadastrar(usuario);
+                        }
+                    }
+                }
+            }catch(Exception erro){
+                mensagem = $"Erro : \n {erro.Message} \n Contate o programador que fez isso e lhe de um socão nas costas dele ;-;";
+            }
+            @ViewBag.Mensagem = mensagem;
+            @ViewBag.Titulo = "Pagina Inicial";
             return RedirectToAction("PaginaInicial");
         }
     }
