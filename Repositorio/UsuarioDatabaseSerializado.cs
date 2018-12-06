@@ -16,18 +16,13 @@ namespace Web_ProjetoCarfel.Repositorio
         private const string caminho = "Databases/Usuario.dat";
 
         /// <summary>
-        /// Classe de validação de usuario  
-        /// Usado para tratar qualquer erro
-        /// </summary>
-        /// <returns></returns>
-        private IValidacaoUsuario validacao = new ValidacaoUsuarioSerializado();
-        /// <summary>
-        /// Lista de usuarios salvos , só podem ser acessados atraves desta class
+        /// Lista de usuarios salvos , só podem ser acessados atraves desta classe
         /// </summary>
         private List<Usuario> usuariosSalvos;
+
         /// <summary>
         /// Construtor da classe usuario 
-        /// Verifica se existe um arquivo no caminho especificado e cria uma lista de usuarios
+        /// Verifica se existe um arquivo no caminho especificado e cria uma lista de usuarios  
         /// </summary>
         public UsuarioDatabaseSerializado(){
             bool existe = System.IO.File.Exists(caminho);

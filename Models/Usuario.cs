@@ -36,6 +36,7 @@ namespace Web_ProjetoCarfel.Models
         }
         /// <summary>
         /// Define a data de nascimento do usuario
+        /// Só pode ser alterado internamente  
         /// </summary>
         public DateTime dataNascimento{
             private set;
