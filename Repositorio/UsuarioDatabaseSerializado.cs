@@ -13,7 +13,7 @@ namespace Web_ProjetoCarfel.Repositorio
         /// <summary>
         /// Caminho onde será salvo\importado os usuarios
         /// </summary>
-        private const string caminho = "Databases/Usuario.dat";
+        private const string caminho = "Databases/Dados/Usuario.dat";
 
         /// <summary>
         /// Lista de usuarios salvos , só podem ser acessados atraves desta classe
