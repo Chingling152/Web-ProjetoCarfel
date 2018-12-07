@@ -31,13 +31,14 @@ namespace Web_ProjetoCarfel
 
             app.UseSession();
             app.UseStaticFiles();
-
+            
             app.UseMvc(
                 routes => routes.MapRoute(
                     name: "default",
                     template:"{controller=Usuario}/{action=PaginaInicial}"
                 )
             );
+            
         }
     }
 }

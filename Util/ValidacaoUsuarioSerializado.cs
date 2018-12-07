@@ -16,7 +16,7 @@ namespace Web_ProjetoCarfel.Util
         {
             DateTime agora = DateTime.Now;
             int idade = agora.Year - data.Year;
-            if(idade <= 18 || idade >= 100){
+            if(idade < 18 || idade >= 100){
                 return false;
             }else{
                 if(idade == 18 && agora.Month > data.Month){

@@ -153,7 +153,7 @@ namespace Web_ProjetoCarfel.Repositorio
             BinaryFormatter serializador = new BinaryFormatter();               
             serializador.Serialize(memoria,usuariosSalvos);
             File.WriteAllBytes(caminho,memoria.ToArray());
-            Listar();
+            usuariosSalvos = Listar();
         }
         /// <summary>
         /// Le todos os bites do arquivo .dat e retona-os em forma de uma lista de usuarios
@@ -164,7 +164,7 @@ namespace Web_ProjetoCarfel.Repositorio
             byte[] retorno = File.ReadAllBytes(caminho);//cria array de bytes e le o arquivo .dat
             MemoryStream memoria = new MemoryStream(retorno);//le a array de bytes e armazena na memoria
             BinaryFormatter deserializador = new BinaryFormatter(); //criar um fomatador de binarios para converter bytes em objeto
-            return deserializador.Deserialize(memoria) as List<Usuario>;//retorna
+            return deserializador.Deserialize(memoria) as List<Usuario>;//retorna os bytes convertidos como uma lsita de usuarios
         }
         #endregion
     }

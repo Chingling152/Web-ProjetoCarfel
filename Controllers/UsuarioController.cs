@@ -79,10 +79,10 @@ namespace Web_ProjetoCarfel.Controllers
                     }
                 }
             }catch(Exception erro){
-                mensagem = $"Erro : \n {erro.Message} \n Contate o programador que fez isso e lhe de um socão nas costas dele ;-;";
+                mensagem = $"Erro : \n {erro.Message} \n Contate o programador que fez isso e lhe de um socão nas costas ;-;";
             }finally{
                 @ViewBag.Mensagem = mensagem;
-                //Console.WriteLine(mensagem);
+                Console.WriteLine($"{new string('-',mensagem.Length)}\n{mensagem}\n{new string('-',mensagem.Length)}");
             }
             return RedirectToAction("PaginaInicial");
         }
