@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="../CSS/default.css">
     <script src="../Javascript/default.js"></script>
     <title>@ViewBag.Titulo</title>
-    @if (!System.String.IsNullOrEmpty(ViewBag.Mensagem)){
+    @if ( @TempData["Mensagem"] != null ){
         <script>
-            alert(@ViewBag.Mensagem);
+            let mensagem = '@TempData["Mensagem"].ToString()';
+            alert(mensagem);
         </script>
     }
 </head>

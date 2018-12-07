@@ -81,7 +81,7 @@ namespace Web_ProjetoCarfel.Controllers
             }catch(Exception erro){
                 mensagem = $"Erro : \n {erro.Message} \n Contate o programador que fez isso e lhe de um socão nas costas ;-;";
             }finally{
-                @ViewBag.Mensagem = mensagem;
+                TempData["Mensagem"] = mensagem;
                 Console.WriteLine($"{new string('-',mensagem.Length)}\n{mensagem}\n{new string('-',mensagem.Length)}");
             }
             return RedirectToAction("PaginaInicial");

@@ -19,9 +19,7 @@ namespace Web_ProjetoCarfel.Util
             if(idade < 18 || idade >= 100){
                 return false;
             }else{
-                if(idade == 18 && agora.Month > data.Month){
-                    return false;
-                }else if(idade == 18 && agora.Day > data.Day){
+                if(idade == 18 && agora.Month > data.Month && agora.Day > data.Day){
                     return false;
                 }else{
                     return true;
