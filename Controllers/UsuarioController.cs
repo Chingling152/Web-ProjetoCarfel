@@ -25,30 +25,56 @@ namespace Web_ProjetoCarfel.Controllers
         [HttpGet]
         public IActionResult PaginaInicial(){
             @ViewBag.Titulo = "Pagina Inicial";
+            ViewData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult Contato(){
             @ViewBag.Titulo = "Contato";
+            ViewData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult Produto(){
             @ViewBag.Titulo = "Checkpoint";
+            ViewData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult PerguntasFrequentes(){
             @ViewBag.Titulo = "Perguntas frequentes";
+            ViewData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult SobreNos(){
+            ViewData["Usuario"] = usuarioLogado;
             @ViewBag.Titulo = "Sobre nós";
             return View();
         }
         [HttpPost]
-        public IActionResult Login(){
+        public IActionResult Login(IFormCollection form){
+            string mensagem = "";
+
+            if(usuarioLogado == null){
+                string email = form["Email"];
+                string senha = form["Senha"];
+
+                Usuario usuario = database.Logar(email,senha);
+
+                if(usuario != null){
+                    mensagem = $"Seja bem vindo {usuario.Nome}";
+                    usuarioLogado = usuario;
+                }else{
+                    mensagem = "Email e senha incorretos ou invalidos";      
+                }
+
+                Console.WriteLine($"\n {usuarioLogado.Nome} \n");
+                ViewData["Usuario"] = usuarioLogado;    
+            }else{
+                mensagem = "Você já está logado";
+            }
+            TempData["Mensagem"] = mensagem;
             return RedirectToAction("PaginaInicial");
         }
         [HttpPost]
@@ -82,7 +108,7 @@ namespace Web_ProjetoCarfel.Controllers
                 mensagem = $"Erro : \n {erro.Message} \n Contate o programador que fez isso e lhe de um socão nas costas ;-;";
             }finally{
                 TempData["Mensagem"] = mensagem;
-                Console.WriteLine($"{new string('-',mensagem.Length)}\n{mensagem}\n{new string('-',mensagem.Length)}");
+                //Console.WriteLine($"{new string('-',mensagem.Length)}\n{mensagem}\n{new string('-',mensagem.Length)}");
             }
             return RedirectToAction("PaginaInicial");
         }

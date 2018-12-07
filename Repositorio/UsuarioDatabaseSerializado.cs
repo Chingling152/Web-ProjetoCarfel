@@ -128,7 +128,7 @@ namespace Web_ProjetoCarfel.Repositorio
         public Usuario Logar(string email, string senha)
         {
             Usuario usuario = null;
-
+            
             foreach (Usuario item in usuariosSalvos)
             {
                 if(item.Email == email){
