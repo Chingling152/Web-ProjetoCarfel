@@ -1,3 +1,4 @@
+@using Web_ProjetoCarfel.Models;
 @{
     Layout = "../Shared/Layout";
 }
@@ -16,19 +17,29 @@
                 </a>
             </div>
             <!-- Gerado -->
-            <div id="info"> 
-                <p>Nome : <span>[Nome do usuario]</span></p>
-                <p>Email : <span>[Email do usuario]</span></p>
-                <p>Senha : <span>[Senha do usuario]</span></p>
-                <p>Data de Nascimento : <span>[Data de Nascimento do usuario]</span></p>                
-                <p>ID :<span>[ID do usuario]</span></p>
-                <p>Data de criação :<span>[Data de criação do usuario]</span></p>
-            </div>
-            <!--Gerado (exclusivo ADM)-->
-            <div id="adm-buttons" class="flex-column">
-                <a href="" class="custom-button">Mostrar usuario</a>
-                <a href="" class="custom-button">Aprovar comentarios</a>
-            </div>
+            @{
+                Usuario user = ViewData["Dono"] as Usuario;
+                Usuario usuarioLogado = ViewData["Usuario"] as Usuario;
+                <div id="info"> 
+                    <p>Nome : <p>@user.Nome</p></p>
+                    <p>Email : <span>@user.Email</span></p>
+                    @if(user.ID == usuarioLogado.ID){
+                        <p>Senha : <span>@user.Senha</span></p>
+                    }else{
+                        <p>Senha : <span>********</span></p>
+                    }
+                    <p>Data de Nascimento : <span>@user.dataNascimento</span></p>                
+                    <p>ID :<span>@user.ID</span></p>
+                    <p>Data de criação :<span>@user.dataCriacao</span></p>
+                </div>
+                <!--Gerado (exclusivo ADM)-->
+                @if(user.ID == usuarioLogado.ID && user.Admin == true){
+                    <div id="adm-buttons" class="flex-column">
+                        <a href="" class="custom-button">Mostrar usuario</a>
+                        <a href="" class="custom-button">Aprovar comentarios</a>
+                    </div>  
+                }
+            }
         </div>
     </section>
 </body>

@@ -10,7 +10,7 @@ namespace Web_ProjetoCarfel.Controllers
 {
     public class UsuarioController : Controller
     {
-        private Usuario usuarioLogado = null;
+        private static Usuario usuarioLogado = null;
         /// <summary>
         /// Classe de validação de usuario  
         /// Usado para tratar qualquer erro
@@ -37,20 +37,34 @@ namespace Web_ProjetoCarfel.Controllers
         [HttpGet]
         public IActionResult Produto(){
             @ViewBag.Titulo = "Checkpoint";
-            ViewData["Usuario"] = usuarioLogado;
+            TempData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult PerguntasFrequentes(){
             @ViewBag.Titulo = "Perguntas frequentes";
-            ViewData["Usuario"] = usuarioLogado;
+            TempData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult SobreNos(){
-            ViewData["Usuario"] = usuarioLogado;
+            TempData["Usuario"] = usuarioLogado;
             @ViewBag.Titulo = "Sobre nós";
             return View();
+        }
+        [HttpGet]
+        public IActionResult Perfil(string id){
+            Usuario user = database.Procurar(id);
+            
+            if(user == null){
+                TempData["Mensagem"] = "Esse perfil não existe";
+                return RedirectToAction("Pagina Inicial");
+            }else{
+                ViewData["Usuario"] = usuarioLogado;
+                ViewData["Dono"] = user;
+                @ViewBag.Titulo = $"Perfil de {user.Nome}";
+                return View();
+            }
         }
         [HttpPost]
         public IActionResult Login(IFormCollection form){

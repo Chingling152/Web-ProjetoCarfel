@@ -11,10 +11,11 @@
             <a href="../Usuario/Produto">Produto</a>
                 @{
                     Usuario user = ViewData["Usuario"] as Usuario;
-                    if(user == null ){
+
+                    if(user == null){
                         <a onclick='PopUp();'>Cadastro / Login</a>
                     }else{
-                        <a href="../Usuario/Perfil?ID=user.ID">@user.Nome</a>
+                        <a href="../Usuario/Perfil?id=@user.ID">@user.Nome</a>
                     }
                 }
         </nav>
