@@ -31,7 +31,7 @@ namespace Web_ProjetoCarfel.Repositorio
             throw new System.NotImplementedException();
         }
 
-        public bool Reprovar(Comentario comentario)
+        public bool Aprovado(Comentario comentario)
         {
             throw new System.NotImplementedException();
         }

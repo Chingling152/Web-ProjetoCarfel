@@ -10,7 +10,7 @@ namespace Web_ProjetoCarfel.Controllers
 {
     public class UsuarioController : Controller
     {
-        private static Usuario usuarioLogado = null;
+        public static Usuario usuarioLogado = null;
         /// <summary>
         /// Classe de validação de usuario  
         /// Usado para tratar qualquer erro

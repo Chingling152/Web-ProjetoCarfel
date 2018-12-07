@@ -187,7 +187,7 @@ h3{
     content: " \" ";
 }
 
-/*Foto perfil*/
+/* Perfil*/
 .profile-pic{
     border:3px solid #4F4D4D;
     border-radius: 50%;
@@ -195,6 +195,9 @@ h3{
     height: 180px;
 }
 
+p > span{
+    font-weight: 700;
+}
 /* Form */
 
 form > label{

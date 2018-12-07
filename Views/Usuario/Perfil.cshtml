@@ -21,7 +21,7 @@
                 Usuario user = ViewData["Dono"] as Usuario;
                 Usuario usuarioLogado = ViewData["Usuario"] as Usuario;
                 <div id="info"> 
-                    <p>Nome : <p>@user.Nome</p></p>
+                    <p>Nome : <span>@user.Nome</span></p>
                     <p>Email : <span>@user.Email</span></p>
                     @if(user.ID == usuarioLogado.ID){
                         <p>Senha : <span>@user.Senha</span></p>
