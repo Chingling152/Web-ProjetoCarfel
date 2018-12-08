@@ -11,3 +11,11 @@
 .profile #adm-buttons{
     margin-left:4em; 
 }
+
+p > span{
+    font-weight: 700;
+}
+
+h1 > span{
+    font-size: 1em;
+}

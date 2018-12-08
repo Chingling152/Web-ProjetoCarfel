@@ -9,7 +9,7 @@
     <script src="../Javascript/default.js"></script>
     <title>@ViewBag.Titulo</title>
     @if ( @TempData["Mensagem"] != null ){
-        <script>
+        <script charset="utf-8">
             let mensagem = '@TempData["Mensagem"].ToString()';
             alert(mensagem);
         </script>

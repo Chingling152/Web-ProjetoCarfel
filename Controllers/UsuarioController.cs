@@ -70,26 +70,32 @@ namespace Web_ProjetoCarfel.Controllers
         public IActionResult Login(IFormCollection form){
             string mensagem = "";
 
-            if(usuarioLogado == null){
+            if(usuarioLogado == null){// se não houver ninguem logado
                 string email = form["Email"];
                 string senha = form["Senha"];
 
                 Usuario usuario = database.Logar(email,senha);
 
-                if(usuario != null){
+                if(usuario != null){//se o retorno do database.Login não for nulo , ou seja ... se houver um usuario com essa combinação de email\senha
                     mensagem = $"Seja bem vindo {usuario.Nome}";
                     usuarioLogado = usuario;
                 }else{
-                    mensagem = "Email e senha incorretos ou invalidos";      
+                    mensagem = "Email e senha incorretos ou invalidos"; 
+                         
                 }
-
-                Console.WriteLine($"\n {usuarioLogado.Nome} \n");
+                //Console.WriteLine($"\n {usuarioLogado.Nome} \n");
                 ViewData["Usuario"] = usuarioLogado;    
             }else{
                 mensagem = "Você já está logado";
             }
-            TempData["Mensagem"] = mensagem;
-            return RedirectToAction("PaginaInicial");
+
+            if(usuarioLogado != null){
+                TempData["Mensagem"] = mensagem;
+                return RedirectToAction("Perfil","Usuario",new{id = usuarioLogado.ID});
+            }else{
+                TempData["Mensagem"] = mensagem;
+                return RedirectToAction("PaginaInicial","Usuario");
+            }
         }
         [HttpPost]
         public IActionResult Registrar(IFormCollection form){

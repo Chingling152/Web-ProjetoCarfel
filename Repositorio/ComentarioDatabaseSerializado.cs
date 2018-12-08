@@ -35,5 +35,15 @@ namespace Web_ProjetoCarfel.Repositorio
         {
             throw new System.NotImplementedException();
         }
+
+        public List<Comentario> ListarOrdenado()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Comentario> ListarPorTipo(string Tipo)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

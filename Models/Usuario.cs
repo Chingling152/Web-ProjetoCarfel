@@ -72,7 +72,7 @@ namespace Web_ProjetoCarfel.Models
             this.dataNascimento = dataNascimento;
             this.Admin = true;
             dataCriacao = DateTime.Now;
-            FotoPerfilNome = System.Environment.CurrentDirectory + "/Databases/FotosPerfil/null-user.png";
+            FotoPerfilNome = "null-user.png";
         }
         
     }

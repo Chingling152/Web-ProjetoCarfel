@@ -22,7 +22,7 @@ h1 , h2 , h3 , p {
     cursor: default;
 }
 
-h1{
+h1 {
     font-size: 2em;
 }
 
@@ -191,12 +191,9 @@ h3{
 .profile-pic{
     border:3px solid #4F4D4D;
     border-radius: 50%;
-    width: 180px;
-    height: 180px;
-}
+    min-width: 180px;max-width: 180px;
+    min-height: 180px;max-height: 180px;
 
-p > span{
-    font-weight: 700;
 }
 /* Form */
 

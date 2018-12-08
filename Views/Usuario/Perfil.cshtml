@@ -1,6 +1,8 @@
 @using Web_ProjetoCarfel.Models;
 @{
     Layout = "../Shared/Layout";
+    Usuario user = ViewData["Dono"] as Usuario;
+    Usuario usuarioLogado = ViewData["Usuario"] as Usuario;
 }
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -9,37 +11,41 @@
 </head>
 <body>
     <section class="content flex-column flex-centered">
-        <h1>Perfil do Usuario [Usuario]</h1>
+        <h1>Perfil do Usuario <span>@user.Nome</span></h1>
         <div class="profile flex-container border-container">
             <div class="pic">
-                <a href="">
-                    <img class="profile-pic" src="../Resources/Shared/null-user.png" alt="Foto de perfil padrão">
+                <a href="../Usuario/Perfil?id=@user.ID">
+                    <img class="profile-pic" src="../FotosPerfil/@user.FotoPerfilNome" alt="Foto de perfil padrão">
                 </a>
             </div>
             <!-- Gerado -->
-            @{
-                Usuario user = ViewData["Dono"] as Usuario;
-                Usuario usuarioLogado = ViewData["Usuario"] as Usuario;
                 <div id="info"> 
                     <p>Nome : <span>@user.Nome</span></p>
                     <p>Email : <span>@user.Email</span></p>
-                    @if(user.ID == usuarioLogado.ID){
+                    @if(usuarioLogado != null || user.ID == usuarioLogado.ID){
                         <p>Senha : <span>@user.Senha</span></p>
                     }else{
                         <p>Senha : <span>********</span></p>
                     }
-                    <p>Data de Nascimento : <span>@user.dataNascimento</span></p>                
+                    <p>Data de Nascimento : <span>@user.dataNascimento.ToShortDateString()</span></p>                
+                </div>
+                <div>
                     <p>ID :<span>@user.ID</span></p>
                     <p>Data de criação :<span>@user.dataCriacao</span></p>
                 </div>
                 <!--Gerado (exclusivo ADM)-->
-                @if(user.ID == usuarioLogado.ID && user.Admin == true){
-                    <div id="adm-buttons" class="flex-column">
-                        <a href="" class="custom-button">Mostrar usuario</a>
-                        <a href="" class="custom-button">Aprovar comentarios</a>
-                    </div>  
-                }
-            }
+                <div id="adm-buttons" class="flex-column">
+                    @if(usuarioLogado != null){
+                        @if(user.ID == usuarioLogado.ID && user.Admin == true){
+                            <a href="" class="custom-button">Mostrar usuarios</a>
+                            <a href="" class="custom-button">Aprovar comentarios</a>
+                            <a href="" class="custom-button">Responder Usuario</a>
+                        }else{
+                            <a href="" class="custom-button">Deixar um comentario</a>
+                        }
+                        <a href="" class="custom-button">Fazer Logoff</a>
+                    }
+                </div>
         </div>
     </section>
 </body>
