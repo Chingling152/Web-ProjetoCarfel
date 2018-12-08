@@ -11,9 +11,20 @@ namespace Web_ProjetoCarfel.Controllers
 {
     public class ComentarioController : Controller
     {
+        /// <summary>
+        /// Classe que manuseia o banco de dados dos comentarios
+        /// </summary>
+        private IComentario database = new ComentarioDatabaseSerializado();
+
         [HttpGet]
         public IActionResult Comentarios(){
-            System.Console.WriteLine("\nTTTTTTTTT\n");
+            ViewData["Lista"] = database.Listar();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Comentarios(IFormCollection form){
+            
             return View();
         }
     }

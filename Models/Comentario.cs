@@ -1,5 +1,6 @@
 namespace Web_ProjetoCarfel.Models
 {
+    [System.Serializable]
     public class Comentario
     {
         public readonly int ID;

@@ -62,12 +62,13 @@ namespace Web_ProjetoCarfel.Models
         /// </summary>
         /// <param name="ID">Define o id do usuario</param>
         /// <param name="Nome">Define o nome do usuario</param>
+        /// <param name="Email">Define o email do usuario</param>
         /// <param name="Senha">Define a senha do usuario</param>
         /// <param name="dataNascimento">Define a data de nascimento do usuario</param>
         public Usuario(int ID,string Nome,string Email,string Senha,DateTime dataNascimento){
             this.ID = ID;
             this.Nome = Nome;
-            this.Email = Email;
+            this.Email = Email.ToLower();
             this.Senha = Senha;
             this.dataNascimento = dataNascimento;
             this.Admin = true;

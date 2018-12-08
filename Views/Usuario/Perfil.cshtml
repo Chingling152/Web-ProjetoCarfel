@@ -3,6 +3,9 @@
     Layout = "../Shared/Layout";
     Usuario user = ViewData["Dono"] as Usuario;
     Usuario usuarioLogado = ViewData["Usuario"] as Usuario;
+    if(usuarioLogado == null){
+        usuarioLogado = new Usuario(0,"Visitante","visitante@hotmail.com","senhaparavisitante",DateTime.Parse("01/01/2000"));
+    }
 }
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -22,7 +25,7 @@
                 <div id="info"> 
                     <p>Nome : <span>@user.Nome</span></p>
                     <p>Email : <span>@user.Email</span></p>
-                    @if(usuarioLogado != null || user.ID == usuarioLogado.ID){
+                    @if(user.ID == usuarioLogado.ID){
                         <p>Senha : <span>@user.Senha</span></p>
                     }else{
                         <p>Senha : <span>********</span></p>
@@ -35,7 +38,7 @@
                 </div>
                 <!--Gerado (exclusivo ADM)-->
                 <div id="adm-buttons" class="flex-column">
-                    @if(usuarioLogado != null){
+                    @if(usuarioLogado.ID != 0){
                         @if(user.ID == usuarioLogado.ID && user.Admin == true){
                             <a href="" class="custom-button">Mostrar usuarios</a>
                             <a href="" class="custom-button">Aprovar comentarios</a>
@@ -43,7 +46,7 @@
                         }else{
                             <a href="" class="custom-button">Deixar um comentario</a>
                         }
-                        <a href="" class="custom-button">Fazer Logoff</a>
+                        <a href="../Usuario/Logoff" class="custom-button">Fazer Logoff</a>
                     }
                 </div>
         </div>

@@ -18,7 +18,7 @@ namespace Web_ProjetoCarfel.Controllers
         private IValidacaoUsuario validacao = new ValidacaoUsuario();
     
         /// <summary>
-        /// Classe que manuseia o banco de dados
+        /// Classe que manuseia o banco de dados do usuario
         /// </summary>
         private IUsuario database = new UsuarioDatabaseSerializado();
 
@@ -51,6 +51,12 @@ namespace Web_ProjetoCarfel.Controllers
             TempData["Usuario"] = usuarioLogado;
             @ViewBag.Titulo = "Sobre nós";
             return View();
+        }
+        [HttpGet]
+        public IActionResult Logoff(){
+            usuarioLogado = null;
+            @TempData["Mensagem"] = "Você foi deslogado com sucesso";
+            return RedirectToAction("PaginaInicial","Usuario");
         }
         [HttpGet]
         public IActionResult Perfil(string id){
