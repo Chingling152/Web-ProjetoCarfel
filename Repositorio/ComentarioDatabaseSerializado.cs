@@ -53,19 +53,30 @@ namespace Web_ProjetoCarfel.Repositorio
             }
             return tempComentario;
         }
-
-        public bool Aprovado(Comentario comentario)
-        {
-            throw new System.NotImplementedException();
+        public int ProcurarIndex(int id){
+            int contador = 0;
+            foreach (Comentario item in Comentarios)
+            {
+                if(item.ID == id){         
+                    return contador;
+                }
+                contador ++;
+            }
+            return -1;
         }
 
-
-        public Comentario ProcurarPorID(string id)
+        public bool Aprovar(string id)
         {
-            throw new System.NotImplementedException();
+            int index = ProcurarIndex(int.Parse(id));
+            if(!Comentarios[index].Aprovado){
+                Comentarios[index].Aprovado = true;
+                return true;
+            }else{
+                return false;
+            }
         }
 
-        public Comentario ProcurarPorUsuario(string id)
+        public Comentario ProcurarPorUsuario(string userid)
         {
             throw new System.NotImplementedException();
         }
@@ -98,22 +109,6 @@ namespace Web_ProjetoCarfel.Repositorio
             return Retorno;
         }
 
-        /// <summary>
-        /// Retorna a lista de comentarios ordenado por mais relevancia primeiro
-        /// </summary>
-        /// <returns>O banco de dados porem com os comentarios ordenados por ordem de relevancia</returns>
-        public List<Comentario> ListarRelevante(){
-            List<Comentario> tempComentario = new List<Comentario>();
-            for(int i = 10; i > 0;i++){
-                foreach (Comentario item in Comentarios)
-                {
-                    if(item.Prioridade == i){
-                        tempComentario.Add(item);
-                    }
-                }
-            }
-            return tempComentario;
-        }
         public List<Comentario> ListarOrdenado(){
             List<Comentario> tempComentario = new List<Comentario>();
             return tempComentario;
@@ -122,6 +117,7 @@ namespace Web_ProjetoCarfel.Repositorio
         public List<Comentario> ListarPorTipo(string Tipo){
             throw new System.NotImplementedException();
         }
+
     }
 }
 

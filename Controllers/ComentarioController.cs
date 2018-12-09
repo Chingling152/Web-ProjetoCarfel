@@ -35,10 +35,9 @@ namespace Web_ProjetoCarfel.Controllers
                     int id = database.Listar().Count + 1;
                     int usuario = usuarioLogado.ID;
                     string comentario = form["Comment"];
-                    int prioridade = usuarioLogado.Admin? 5 : 1;
                     bool aprovado = usuarioLogado.Admin? true : false; 
 
-                    Comentario novoComentario = new Comentario(id,usuario,comentario,prioridade,aprovado);
+                    Comentario novoComentario = new Comentario(id,usuario,comentario,aprovado);
 
                     database.Cadastrar(novoComentario);
                     mensagem = aprovado ? "Seu comentario foi enviado com sucesso":"Seu comentario foi enviado com sucesso e aguarda aprovação";
@@ -51,7 +50,7 @@ namespace Web_ProjetoCarfel.Controllers
             }catch(Exception exc){
                 mensagem = $"Ops ;-; alguma merda aconteceu por debaixo dos panos....\n {exc.Message}";
             }
-            ViewData["Lista"] = database.Listar();
+            ViewData["Lista"] = database.ListarAprovados();
             ViewData["Usuario"] = usuarioLogado;
             TempData["Mensagem"] = mensagem;
             return View();
@@ -65,7 +64,7 @@ namespace Web_ProjetoCarfel.Controllers
 
         [HttpPost]
         public IActionResult Aprovar(int id){
-
+            database.Aprovar(id.ToString());
             return RedirectToAction("Aprovar");
         }
     }

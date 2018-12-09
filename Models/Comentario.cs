@@ -1,3 +1,5 @@
+using System;
+
 namespace Web_ProjetoCarfel.Models
 {
     [System.Serializable]
@@ -11,14 +13,13 @@ namespace Web_ProjetoCarfel.Models
         /// Um nivel de prioridade para o comentario vai de 0 a 10   
         /// Sendo 10 mais relevante e 0 menos relevante
         /// </summary>
-        public int Prioridade;
-        //public readonly string Tipo;
+        public DateTime DataCriacao;
 
-        public Comentario(int ID,int IDUsuario,string Comentario_,int Prioridade,bool Aprovado){
+        public Comentario(int ID,int IDUsuario,string Comentario_,bool Aprovado){
             this.ID = ID;
             this.IDUsuario = IDUsuario;
             this.Comentario_ = Comentario_;
-            this.Prioridade = Prioridade > 10 || Prioridade < 0? 0 : Prioridade ;
+            this.DataCriacao = DateTime.Now;
             this.Aprovado = Aprovado;
         }
     }
