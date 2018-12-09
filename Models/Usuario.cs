@@ -71,7 +71,7 @@ namespace Web_ProjetoCarfel.Models
             this.Email = Email.ToLower();
             this.Senha = Senha;
             this.dataNascimento = dataNascimento;
-            this.Admin = true;
+            this.Admin = false;
             dataCriacao = DateTime.Now;
             FotoPerfilNome = "null-user.png";
         }

@@ -40,11 +40,11 @@
                 <div id="adm-buttons" class="flex-column">
                     @if(usuarioLogado.ID != 0){
                         @if(user.ID == usuarioLogado.ID && user.Admin == true){
-                            <a href="" class="custom-button">Mostrar usuarios</a>
-                            <a href="" class="custom-button">Aprovar comentarios</a>
-                            <a href="" class="custom-button">Responder Usuario</a>
+                            <a href="../Usuario/Mostrar" class="custom-button">Mostrar usuarios</a>
+                            <a href="../Comentario/Aprovar" class="custom-button">Aprovar comentarios</a>
+                            <a href="../Comentario/Comentarios" class="custom-button">Responder Usuario</a>
                         }else{
-                            <a href="" class="custom-button">Deixar um comentario</a>
+                            <a href="../Comentario/Comentarios" class="custom-button">Deixar um comentario</a>
                         }
                         <a href="../Usuario/Logoff" class="custom-button">Fazer Logoff</a>
                     }

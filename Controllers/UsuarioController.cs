@@ -20,7 +20,7 @@ namespace Web_ProjetoCarfel.Controllers
         /// <summary>
         /// Classe que manuseia o banco de dados do usuario
         /// </summary>
-        private IUsuario database = new UsuarioDatabaseSerializado();
+        public static IUsuario database = new UsuarioDatabaseSerializado();
 
         [HttpGet]
         public IActionResult PaginaInicial(){
@@ -105,7 +105,6 @@ namespace Web_ProjetoCarfel.Controllers
         }
         [HttpPost]
         public IActionResult Registrar(IFormCollection form){
-
             string mensagem = "";
 
             try{

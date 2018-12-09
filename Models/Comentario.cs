@@ -5,18 +5,21 @@ namespace Web_ProjetoCarfel.Models
     {
         public readonly int ID;
         public readonly int IDUsuario;
-        public string Comentario_;
+        public readonly string Comentario_;
         public bool Aprovado;
+        /// <summary>
+        /// Um nivel de prioridade para o comentario vai de 0 a 10   
+        /// Sendo 10 mais relevante e 0 menos relevante
+        /// </summary>
         public int Prioridade;
-        public string Tipo;
+        //public readonly string Tipo;
 
-        public Comentario(int ID,int IDUsuario,string Comentario_,int Prioridade,string Tipo){
+        public Comentario(int ID,int IDUsuario,string Comentario_,int Prioridade,bool Aprovado){
             this.ID = ID;
             this.IDUsuario = IDUsuario;
             this.Comentario_ = Comentario_;
-            this.Prioridade = Prioridade;
-            this.Tipo = Tipo;
-            this.Aprovado = false;
+            this.Prioridade = Prioridade > 10 || Prioridade < 0? 0 : Prioridade ;
+            this.Aprovado = Aprovado;
         }
     }
 }

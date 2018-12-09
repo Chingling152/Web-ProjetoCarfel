@@ -1,5 +1,9 @@
+@using Web_ProjetoCarfel.Models;
+@using Web_ProjetoCarfel.Controllers;
 @{
     Layout = "../Shared/Layout";
+    Usuario usuario = ViewData["Usuario"] as Usuario;
+    List<Comentario> lista = ViewData["Lista"] as List<Comentario>;
 }
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -9,12 +13,27 @@
 <body>
     <section class="content">
         <h2>Depoimentos do produto</h2>
-        
+        <div class="comment-container flex-container">
+            @foreach (Comentario item in lista){
+                Usuario user = UsuarioController.database.Procurar(item.IDUsuario.ToString());
+                <div class="comment border-container flex-container">
+                    <a href="../Usuario/Perfil?id=@user.ID">
+                        <img class="profile-pic" src="../FotosPerfil/@user.FotoPerfilNome" alt="Comentario de @user.Nome">
+                    </a>
+                    <div class="flex-column">
+                        <a href="../Usuario/Perfil?id=@user.ID">@user.Nome</a>
+                        <p class="quote">@item.Comentario_</p>
+                    </div>
+                </div>
+            }
+        </div>
         <hr style="width:75% ; margin:1em auto;">
+        
+        @if(usuario != null){
         <form class = "flex-column flex-centered" action="/Comentario/Comentarios" method="post">
             <div class="flex-container">
                 <a href="">
-                    <img class="profile-pic" src="../Resources/Shared/null-user.png" alt="Foto de perfil padrão">
+                    <img class="profile-pic" src="../Resources/Shared/@usuario.FotoPerfilNome" alt="Foto de perfil padrão">
                 </a>
                 <label for="Comment">Escreva um comentario</label>
             </div>
@@ -22,6 +41,7 @@
             
             <input type="submit" value="Enviar Comentario">
         </form>
+        }
     </section>
 </body>
 </html>

@@ -1,0 +1,55 @@
+@using Web_ProjetoCarfel.Models;
+@{
+    List<Comentario> comentarios = ViewData["Lista"] as List<Comentario>;
+}
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/default.css">
+    <link rel="stylesheet" href="../CSS/AprovarComentarios.css">
+    
+    <script src="../Javascript/default.js"></script>
+    @if ( @TempData["Mensagem"] != null ){
+        <script charset="utf-8">
+            let mensagem = '@TempData["Mensagem"].ToString()';
+            alert(mensagem);
+        </script>
+    }
+    <title>@ViewBag.Titulo</title>
+</head>
+<body>
+    <div class="content">
+        <a href="../Usuario/PaginaInicial">Voltar</a>
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Comentario</td>
+                    <td>ID do usuario</td>
+                    <td>Aprovado</td>
+                    <td>Relevancia</td>
+                    <td>Aprovar</td>
+                    <td>Remover</td>
+                </tr>
+            </thead>
+            <tbody >
+                @foreach (Comentario item in comentarios){
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Comentario_</td>
+                    <td>@item.IDUsuario</td>
+                    <td>@item.Aprovado</td>
+                    <td>@item.Prioridade</td>
+                    <td><a href="">Aprovar</a></td>
+                    <td><a href="">Remover</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

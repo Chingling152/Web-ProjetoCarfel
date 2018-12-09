@@ -40,10 +40,18 @@ namespace Web_ProjetoCarfel.Repositorio
             return comentario;
         }
 
-
-        public Usuario Procurar(string id)
+        public Comentario Procurar(string id)
         {
-            throw new System.NotImplementedException();
+            int ID = int.Parse(id);
+            Comentario tempComentario = null;
+            foreach (Comentario item in Comentarios)
+            {
+                if(item.ID == ID){
+                    tempComentario = item;
+                    break;
+                }
+            }
+            return tempComentario;
         }
 
         public bool Aprovado(Comentario comentario)
