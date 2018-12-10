@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Web_ProjetoCarfel.Interfaces;
 using Web_ProjetoCarfel.Models;
@@ -155,18 +156,19 @@ namespace Web_ProjetoCarfel.Repositorio
                 return Retorno;
             }
             /// <summary>
-            /// Procura no metodo Listar todos os comentarios e os ordena em ordem cronologica (uuuu algoritmo magico)
+            /// Procura no metodo ListarAprovados todos os comentarios e os ordena em ordem cronologica (uuuu algoritmo magico)
             /// </summary>
             /// <returns>Retorna uma lista de comentarios ordenadas cronologicamente</returns>
-            public List<Comentario> ListarOrdenado(){
-                List<Comentario> tempComentario = new List<Comentario>();
-                return tempComentario;
-            }
+            public List<Comentario> ListarOrdenado() => ListarAprovados().OrderByDescending(comment => comment.DataCriacao).ToList();
 
-        public List<Comentario> ListarPrimeiros()
-        {
-            throw new NotImplementedException();
-        }
+            public List<Comentario> ListarPrimeiros()
+            {
+                List<Comentario> Retorno = new List<Comentario>();
+                for(int i = 0 ;i < 4 ;i++){
+                    Retorno.Add(Comentarios[i]);
+                }
+                return Retorno;
+            }
         #endregion
     }
 }

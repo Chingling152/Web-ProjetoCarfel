@@ -1,5 +1,8 @@
+@using Web_ProjetoCarfel.Models;
+@using Web_ProjetoCarfel.Controllers;
 @{
     Layout = "../Shared/Layout";
+    List<Comentario> comentarios = ViewData["Lista"] as List<Comentario>;
 }
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -40,42 +43,19 @@
         <section class = "flex-column flex-centered">
             <h2>Depoimentos do produto</h2>
             <div class="comment-container flex-container">
+                @foreach (Comentario item in comentarios){
+                Usuario user = UsuarioController.database.Procurar(item.IDUsuario.ToString());
                 <div class="comment border-container flex-container">
-                    <a href="" draggable="false">
-                        <img class="profile-pic" src="../Resources/Shared/top-banner.jpeg" alt="Foto de perfil padrão" draggable="false">
+                    <a href="../Usuario/Perfil?id=@user.ID">
+                        <img class="profile-pic" src="../FotosPerfil/@user.FotoPerfilNome" alt="Comentario de @user.Nome">
                     </a>
-                    <div>
-                        <a href="">[Nome do Usuario]</a>
-                        <p class="quote">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur sed esse distinctio, sunt facere officiis assumenda iste! Autem veritatis tenetur, voluptatibus velit odit sint aperiam, cupiditate mollitia minima, suscipit officiis.</p>
+                    <div class="flex-column">
+                        <a href="../Usuario/Perfil?id=@user.ID">@user.Nome</a>
+                        <p class="quote">@item.Comentario_</p>
+                        <p>@item.DataCriacao.ToShortDateString()</p>
                     </div>
                 </div>
-                <div class="comment border-container flex-container">
-                    <a href="" draggable="false">
-                        <img class="profile-pic" src="../Resources/Shared/top-banner.jpeg" alt="Foto de perfil padrão" draggable="false">
-                    </a>
-                    <div>
-                        <a href="">[Nome do Usuario]</a>
-                        <p class="quote">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur sed esse distinctio, sunt facere officiis assumenda iste! Autem veritatis tenetur, voluptatibus velit odit sint aperiam, cupiditate mollitia minima, suscipit officiis.</p>
-                    </div>
-                </div>
-                <div class="comment border-container flex-container">
-                    <a href="" draggable="false">
-                        <img class="profile-pic" src="../Resources/Shared/null-user.png" alt="Foto de perfil padrão" draggable="false">
-                    </a>
-                    <div>
-                        <a href="">[Nome do Usuario]</a>
-                        <p class="quote">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur sed esse distinctio, sunt facere officiis assumenda iste! Autem veritatis tenetur, voluptatibus velit odit sint aperiam, cupiditate mollitia minima, suscipit officiis.</p>
-                    </div>
-                </div>
-                <div class="comment border-container flex-container">
-                    <a href="" draggable="false">
-                        <img class="profile-pic" src="../Resources/Shared/null-user.png" alt="Foto de perfil padrão" draggable="false">
-                    </a>
-                    <div>
-                        <a href="">[Nome do Usuario]</a>
-                        <p class="quote">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur sed esse distinctio, sunt facere officiis assumenda iste! Autem veritatis tenetur, voluptatibus velit odit sint aperiam, cupiditate mollitia minima, suscipit officiis.</p>
-                    </div>
-                </div>
+                }
                 <a href="../Comentario/Comentarios">Ver mais comentarios</a>
             </div>
         </section>

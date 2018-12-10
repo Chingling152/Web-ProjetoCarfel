@@ -21,6 +21,8 @@ namespace Web_ProjetoCarfel.Controllers
         public IActionResult PaginaInicial(){
             @ViewBag.Titulo = "Pagina Inicial";
             ViewData["Usuario"] = usuarioLogado;
+            ViewData["Lista"] = ComentarioController.database.ListarPrimeiros();
+            //ComentarioController.database
             return View();
         }
         [HttpGet]
@@ -72,7 +74,7 @@ namespace Web_ProjetoCarfel.Controllers
             string mensagem = "";
 
             if(usuarioLogado == null){// se não houver ninguem logado
-                string email = form["Email"];
+                string email = form["Email"].ToString().ToLower();
                 string senha = form["Senha"];
 
                 Usuario usuario = database.Logar(email,senha);

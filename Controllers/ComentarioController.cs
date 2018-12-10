@@ -21,7 +21,7 @@ namespace Web_ProjetoCarfel.Controllers
         public IActionResult Comentarios(){
             usuarioLogado = UsuarioController.usuarioLogado;
 
-            ViewData["Lista"] = database.Listar();
+            ViewData["Lista"] = database.ListarOrdenado();
             ViewData["Usuario"] = usuarioLogado;
             ViewBag.Titulo = "Comentarios";
             return View();
@@ -50,7 +50,7 @@ namespace Web_ProjetoCarfel.Controllers
             }catch(Exception exc){
                 mensagem = $"Ops ;-; alguma merda aconteceu por debaixo dos panos....\n {exc.Message}";
             }
-            ViewData["Lista"] = database.ListarAprovados();
+            ViewData["Lista"] = database.ListarOrdenado();
             ViewData["Usuario"] = usuarioLogado;
             TempData["Mensagem"] = mensagem;
             return View();
