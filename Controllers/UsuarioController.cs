@@ -11,11 +11,6 @@ namespace Web_ProjetoCarfel.Controllers
     public class UsuarioController : Controller
     {
         public static Usuario usuarioLogado = null;
-        /// <summary>
-        /// Classe de validação de usuario  
-        /// Usado para tratar qualquer erro
-        /// </summary>
-        //private IValidacaoUsuario validacao = new ValidacaoUsuario();
     
         /// <summary>
         /// Classe que manuseia o banco de dados do usuario
@@ -37,18 +32,18 @@ namespace Web_ProjetoCarfel.Controllers
         [HttpGet]
         public IActionResult Produto(){
             @ViewBag.Titulo = "Checkpoint";
-            TempData["Usuario"] = usuarioLogado;
+            ViewData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult PerguntasFrequentes(){
             @ViewBag.Titulo = "Perguntas frequentes";
-            TempData["Usuario"] = usuarioLogado;
+            ViewData["Usuario"] = usuarioLogado;
             return View();
         }
         [HttpGet]
         public IActionResult SobreNos(){
-            TempData["Usuario"] = usuarioLogado;
+            ViewData["Usuario"] = usuarioLogado;
             @ViewBag.Titulo = "Sobre nós";
             return View();
         }
@@ -114,6 +109,7 @@ namespace Web_ProjetoCarfel.Controllers
                 string email = form["Email"];
                 string senha = form["Senha"];
                 DateTime dataNascimento = DateTime.Parse(form["Data"]);
+                string foto = UsuarioDatabaseSerializado.fotos[new Random().Next(UsuarioDatabaseSerializado.fotos.Count)];
 
                 if(!ValidacaoUsuario.Equals(email,form["CEmail"])){
                     mensagem = "O email confirmado não é igual ao registrado";
@@ -121,7 +117,7 @@ namespace Web_ProjetoCarfel.Controllers
                     if(!ValidacaoUsuario.Equals(senha,form["CSenha"])){
                         mensagem = "A senha inserida não é a igual a de confirmação";
                     }else{
-                        Usuario usuario = new Usuario(id,nome,email,senha,dataNascimento);
+                        Usuario usuario = new Usuario(id,nome,email,senha,dataNascimento,foto);
                         mensagem = ValidacaoUsuario.ValidarUsuario(usuario,database.Listar());
 
                         if(mensagem == $"Usuario {usuario.Nome} cadastrado com sucesso no id {usuario.ID} !"){

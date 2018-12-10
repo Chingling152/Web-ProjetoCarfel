@@ -65,15 +65,15 @@ namespace Web_ProjetoCarfel.Models
         /// <param name="Email">Define o email do usuario</param>
         /// <param name="Senha">Define a senha do usuario</param>
         /// <param name="dataNascimento">Define a data de nascimento do usuario</param>
-        public Usuario(int ID,string Nome,string Email,string Senha,DateTime dataNascimento){
+        public Usuario(int ID,string Nome,string Email,string Senha,DateTime dataNascimento,string FotoPerfilNome){
             this.ID = ID;
             this.Nome = Nome;
             this.Email = Email.ToLower();
             this.Senha = Senha;
             this.dataNascimento = dataNascimento;
             this.Admin = false;
+            this.FotoPerfilNome = FotoPerfilNome;
             dataCriacao = DateTime.Now;
-            FotoPerfilNome = "null-user.png";
         }
         
     }

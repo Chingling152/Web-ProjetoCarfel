@@ -4,7 +4,7 @@
     Usuario user = ViewData["Dono"] as Usuario;
     Usuario usuarioLogado = ViewData["Usuario"] as Usuario;
     if(usuarioLogado == null){
-        usuarioLogado = new Usuario(0,"Visitante","visitante@hotmail.com","senhaparavisitante",DateTime.Parse("01/01/2000"));
+        usuarioLogado = new Usuario(0,"Visitante","visitante@hotmail.com","senhaparavisitante",DateTime.Parse("01/01/2000"),"null-user.png");
     }
 }
 <!DOCTYPE html>

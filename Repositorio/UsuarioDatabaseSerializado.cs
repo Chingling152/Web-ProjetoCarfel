@@ -18,20 +18,19 @@ namespace Web_ProjetoCarfel.Repositorio
         /// <summary>
         /// Lista de usuarios salvos , só podem ser acessados atraves desta classe
         /// </summary>
-        private List<Usuario> usuariosSalvos;
+        private List<Usuario> usuariosSalvos ;
+
+        public static Dictionary<int,string> fotos;
 
         /// <summary>
         /// Construtor da classe usuario 
         /// Verifica se existe um arquivo no caminho especificado e cria uma lista de usuarios  
         /// </summary>
         public UsuarioDatabaseSerializado(){
+            fotos = ImportarFotos(new DirectoryInfo("wwwroot/FotosPerfil"));
             bool existe = System.IO.File.Exists(caminho);
-            //Console.WriteLine(existe);
             usuariosSalvos = existe?Listar():new List<Usuario>();
-            Serializar();
-            /*Usuario user = Procurar("1");
-            Console.Write($"\nID : {user.ID}\nNome {user.Nome}\n{user.Email}\n{user.Admin}\n{user.Senha}\n{user.dataCriacao}\n{user.dataNascimento}\n");
-            */
+            Serializar();    
         }
         
         #region CRUM
@@ -167,5 +166,17 @@ namespace Web_ProjetoCarfel.Repositorio
             return deserializador.Deserialize(memoria) as List<Usuario>;//retorna os bytes convertidos como uma lsita de usuarios
         }
         #endregion
+
+        private Dictionary<int, string> ImportarFotos(DirectoryInfo diretorio){
+            Dictionary<int,string> tempFotos = new Dictionary<int, string>();
+            int contador = 0;
+            
+            foreach (FileInfo item in diretorio.GetFiles())
+            {
+                tempFotos.Add(contador,item.Name);
+                contador ++;
+            }
+            return tempFotos;
+        }
     }
 }
