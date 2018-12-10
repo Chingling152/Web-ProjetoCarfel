@@ -28,96 +28,134 @@ namespace Web_ProjetoCarfel.Repositorio
             Comentarios = existe?Listar():new List<Comentario>();
             Serializar();
         }
-        /// <summary>
-        /// Cadastra o usuario no banco de dados
-        /// </summary>
-        /// <param name="comentario">Comentario a ser cadastrado no banco de dados</param>
-        /// <returns></returns>
-        public Comentario Cadastrar(Comentario comentario)
-        {
-            Comentarios.Add(comentario);
-            Serializar();
-            return comentario;
-        }
-
-        public Comentario Procurar(string id)
-        {
-            int ID = int.Parse(id);
-            Comentario tempComentario = null;
-            foreach (Comentario item in Comentarios)
-            {
-                if(item.ID == ID){
-                    tempComentario = item;
-                    break;
-                }
-            }
-            return tempComentario;
-        }
-        public int ProcurarIndex(int id){
-            int contador = 0;
-            foreach (Comentario item in Comentarios)
-            {
-                if(item.ID == id){         
-                    return contador;
-                }
-                contador ++;
-            }
-            return -1;
-        }
-
-        public bool Aprovar(string id)
-        {
-            int index = ProcurarIndex(int.Parse(id));
-            if(!Comentarios[index].Aprovado){
-                Comentarios[index].Aprovado = true;
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        public Comentario ProcurarPorUsuario(string userid)
-        {
-            throw new System.NotImplementedException();
-        }
-        private void Serializar(){
-            MemoryStream memoria = new MemoryStream();
-            BinaryFormatter serializador = new BinaryFormatter();
-            serializador.Serialize(memoria,Comentarios);//serializa os objetos do tipo memoria 
-            File.WriteAllBytes(caminho,memoria.ToArray());
-            Comentarios = Listar();
-        }
-        public List<Comentario> Listar(){
-            byte[] bytes = File.ReadAllBytes(caminho);
-            MemoryStream memoria = new MemoryStream(bytes);
-            BinaryFormatter deserialisador = new BinaryFormatter();
-            return deserialisador.Deserialize(memoria) as List<Comentario>;
-        }
         
+        #region Alterações e Adições
+            /// <summary>
+            /// Cadastra o usuario no banco de dados
+            /// </summary>
+            /// <param name="comentario">Comentario a ser cadastrado no banco de dados</param>
+            /// <returns>Retorna um objeto do tipo Comentario</returns>
+            public Comentario Cadastrar(Comentario comentario)
+            {
+                Comentarios.Add(comentario);
+                Serializar();
+                return comentario;
+            }
+        #region Salvar e Carregar
+            /// <summary>
+            /// Pega a lista de comentarios e coverte ela em bytes  
+            /// Depois salva em um arquivo .dat
+            /// </summary>
+            private void Serializar(){
+                MemoryStream memoria = new MemoryStream();
+                BinaryFormatter serializador = new BinaryFormatter();
+                serializador.Serialize(memoria,Comentarios);//serializa os objetos do tipo memoria 
+                File.WriteAllBytes(caminho,memoria.ToArray());
+                Comentarios = Listar();
+            }
+            /// <summary>
+            /// Transforma todos os bytes do banco de dados em uma lista de comentarios
+            /// </summary>
+            /// <returns>Retorna uma lista de comentarios</returns>
+            public List<Comentario> Listar(){
+                byte[] bytes = File.ReadAllBytes(caminho);
+                MemoryStream memoria = new MemoryStream(bytes);
+                BinaryFormatter deserialisador = new BinaryFormatter();
+                return deserialisador.Deserialize(memoria) as List<Comentario>;
+            }
+        #endregion
         /// <summary>
-        /// Procura no metodo listar todos os usuario  
-        /// </summary>
-        /// <returns>Retorna uma lista apenas com os comentarios aprovados pelo administrador</returns>
-        public List<Comentario> ListarAprovados(){
-            List<Comentario> Retorno = new List<Comentario>();
-
-            foreach(Comentario comentario in Comentarios){
-                if(comentario.Aprovado){
-                    Retorno.Add(comentario);
+            /// Seta o estado do comentario no ID selecionado para aprovado
+            /// </summary>
+            /// <param name="id">ID do comentario a ser aprovado</param>
+            /// <returns>Retorna true se o comentario foi arovado</returns>
+            public bool Aprovar(string id){
+                int index = ProcurarIndex(int.Parse(id));
+                if(!Comentarios[index].Aprovado){
+                    Comentarios[index].Aprovado = true;
+                    Serializar();
+                    return true;
+                }else{
+                    return false;
                 }
             }
-            return Retorno;
-        }
+        #endregion
+        #region Listar e Procura
+            /// <summary>
+            /// Procura um comentario que contenha o ID selecionado
+            /// </summary>
+            /// <param name="id">ID do comentario que será procurado</param>
+            /// <returns>Retorna um objeto do tipo Comentario</returns> 
+            public Comentario Procurar(string id)
+            {
+                int ID = int.Parse(id);
+                Comentario tempComentario = null;
+                foreach (Comentario item in Comentarios)
+                {
+                    if(item.ID == ID){
+                        tempComentario = item;
+                        break;
+                    }
+                }
+                return tempComentario;
+            }
+            /// <summary>
+            /// Procura um comentario que contenha o ID selecionado e retorna sua posição na Lista
+            /// </summary>
+            /// <param name="id">ID d usuario que será procurado</param>
+            /// <returns>Indice do comentario na lista</returns>
+            public int ProcurarIndex(int id){
+                int contador = 0;
+                foreach (Comentario item in Comentarios)
+                {
+                    if(item.ID == id){         
+                        return contador;
+                    }
+                    contador ++;
+                }
+                return -1;
+            }
+            /// <summary>
+            /// Percorre o banco de dados e retorna uma lista com todos os comentarios do Usuario selecionado
+            /// </summary>
+            /// <param name="userid"></param>
+            /// <returns></returns>
+            public List<Comentario> ProcurarPorUsuario(string userid)
+            {
+                List<Comentario> tempComentarios = new List<Comentario>();
+                
+                foreach (Comentario item in Comentarios)
+                {
+                    if(item.IDUsuario == int.Parse(userid)){
+                        tempComentarios.Add(item);
+                    }
+                }
+        
+                return tempComentarios;
+            }
+            /// <summary>
+            /// Procura no metodo listar todos os comentarios que forma aprovados  
+            /// </summary>
+            /// <returns>Retorna uma lista apenas com os comentarios aprovados pelo administrador</returns>
+            public List<Comentario> ListarAprovados(){
+                List<Comentario> Retorno = new List<Comentario>();
 
-        public List<Comentario> ListarOrdenado(){
-            List<Comentario> tempComentario = new List<Comentario>();
-            return tempComentario;
-        }
-
-        public List<Comentario> ListarPorTipo(string Tipo){
-            throw new System.NotImplementedException();
-        }
-
+                foreach(Comentario comentario in Comentarios){
+                    if(comentario.Aprovado){
+                        Retorno.Add(comentario);
+                    }
+                }
+                return Retorno;
+            }
+            /// <summary>
+            /// Procura no metodo Listar todos os comentarios e os ordena em ordem cronologica (uuuu algoritmo magico)
+            /// </summary>
+            /// <returns>Retorna uma lista de comentarios ordenadas cronologicamente</returns>
+            public List<Comentario> ListarOrdenado(){
+                List<Comentario> tempComentario = new List<Comentario>();
+                return tempComentario;
+            }
+        #endregion
     }
 }
 

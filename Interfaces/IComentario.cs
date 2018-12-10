@@ -9,10 +9,9 @@ namespace Web_ProjetoCarfel.Interfaces
         bool Aprovar(string id);
         List<Comentario> ListarOrdenado();
         List<Comentario> ListarAprovados();
-        List<Comentario> ListarPorTipo(string Tipo);
         Comentario Procurar(string id);
         int ProcurarIndex(int id);
-        Comentario ProcurarPorUsuario(string id);
+        List<Comentario> ProcurarPorUsuario(string id);
         List<Comentario> Listar();
         
     }

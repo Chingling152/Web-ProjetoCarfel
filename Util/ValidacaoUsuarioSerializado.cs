@@ -5,14 +5,14 @@ using Web_ProjetoCarfel.Models;
 
 namespace Web_ProjetoCarfel.Util
 {
-    public class ValidacaoUsuario: IValidacaoUsuario
+    public static class ValidacaoUsuario//: IValidacaoUsuario
     {
         /// <summary>
         /// Verifica se a data atual subtraida poela data inserida fica entre 18 e 100
         /// </summary>
         /// <param name="data">Data de nascimento do usuario</param>
         /// <returns>Retorna true se o usuario tiver a idade maior ou igual a 18</returns>
-        public bool DataValida(DateTime data)
+        private static bool DataValida(DateTime data)
         {
             DateTime agora = DateTime.Now;
             int idade = agora.Year - data.Year;
@@ -33,7 +33,7 @@ namespace Web_ProjetoCarfel.Util
         /// <param name="email">Email do usuario</param>
         /// <param name="database">Database onde estão todos os emails</param>
         /// <returns>Retorna true se não houver nenhum email igual ao inserido registrado</returns>
-        public bool EmailValido(string email, List<Usuario> database)
+        private static bool EmailValido(string email, List<Usuario> database)
         {
             foreach (Usuario item in database)
             {
@@ -48,12 +48,24 @@ namespace Web_ProjetoCarfel.Util
         /// </summary>
         /// <param name="nome"></param>
         /// <returns></returns>
-        public bool NomeValido(string nome)
+        private static bool NomeValido(string nome)
         {
             if(nome.Length > 80){
                 return false;
             }
             return true;
+        }
+        /// <summary>
+        /// Verifica se a senha contem 8 ou mais caracteres
+        /// </summary>
+        /// <param name="senha">Senha a ser verificada</param>
+        /// <returns>true se a senha conter 8 ou mais caracteres</returns>
+        private static bool SenhaValida(string senha){
+            if(senha.Length >=8){
+                return true;
+            }else{
+                return false;
+            }
         }
         /// <summary>
         /// Metodo principal
@@ -63,7 +75,7 @@ namespace Web_ProjetoCarfel.Util
         /// <param name="user">Usuario a ser validado</param>
         /// <param name="database">Banco de dados</param>
         /// <returns>Retorna uma string com uma mensagem</returns>
-        public string ValidarUsuario(Usuario user, List<Usuario> database)
+        public static string ValidarUsuario(Usuario user, List<Usuario> database)
         {
             if(!NomeValido(user.Nome)){
                 return "Nome invalido !";
@@ -73,6 +85,9 @@ namespace Web_ProjetoCarfel.Util
             }
             if(!DataValida(user.dataNascimento)){
                 return "Idade invalida !";
+            }
+            if(!SenhaValida(user.Senha)){
+                return "Senha invalida !";
             }
             return $"Usuario {user.Nome} cadastrado com sucesso no id {user.ID} !";
         }
@@ -88,5 +103,6 @@ namespace Web_ProjetoCarfel.Util
                 return false;
             }
         }
+
     }
 }

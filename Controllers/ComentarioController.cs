@@ -65,7 +65,9 @@ namespace Web_ProjetoCarfel.Controllers
         [HttpPost]
         public IActionResult Aprovar(int id){
             database.Aprovar(id.ToString());
-            return RedirectToAction("Aprovar");
+            ViewData["Lista"] = database.Listar();
+            ViewBag.Titulo = "Aprovação de comentarios";
+            return View();
         }
     }
 }

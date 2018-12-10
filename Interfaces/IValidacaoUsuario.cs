@@ -10,5 +10,6 @@ namespace Web_ProjetoCarfel.Interfaces
         bool EmailValido(string email,List<Usuario> database);
         bool DataValida(DateTime data);
         bool NomeValido(string nome);
+        bool SenhaValida(string senha);
     }
 }

@@ -15,7 +15,7 @@ namespace Web_ProjetoCarfel.Controllers
         /// Classe de validação de usuario  
         /// Usado para tratar qualquer erro
         /// </summary>
-        private IValidacaoUsuario validacao = new ValidacaoUsuario();
+        //private IValidacaoUsuario validacao = new ValidacaoUsuario();
     
         /// <summary>
         /// Classe que manuseia o banco de dados do usuario
@@ -122,7 +122,7 @@ namespace Web_ProjetoCarfel.Controllers
                         mensagem = "A senha inserida não é a igual a de confirmação";
                     }else{
                         Usuario usuario = new Usuario(id,nome,email,senha,dataNascimento);
-                        mensagem = validacao.ValidarUsuario(usuario,database.Listar());
+                        mensagem = ValidacaoUsuario.ValidarUsuario(usuario,database.Listar());
 
                         if(mensagem == $"Usuario {usuario.Nome} cadastrado com sucesso no id {usuario.ID} !"){
                             usuarioLogado = database.Cadastrar(usuario);

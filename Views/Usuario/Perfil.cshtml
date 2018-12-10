@@ -46,7 +46,9 @@
                         }else{
                             <a href="../Comentario/Comentarios" class="custom-button">Deixar um comentario</a>
                         }
-                        <a href="../Usuario/Logoff" class="custom-button">Fazer Logoff</a>
+                        @if(user.ID == usuarioLogado.ID){
+                            <a href="../Usuario/Logoff" class="custom-button">Fazer Logoff</a>
+                        }
                     }
                 </div>
         </div>
