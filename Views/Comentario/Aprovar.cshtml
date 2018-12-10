@@ -33,7 +33,7 @@
                     <td>Aprovado</td>
                     <td>Data De Criação</td>
                     <td>Aprovar</td>
-                    <td>Remover</td>
+                    <td>Reprovar</td>
                 </tr>
             </thead>
             <tbody>
@@ -44,8 +44,8 @@
                     <td>@item.IDUsuario</td>
                     <td>@item.Aprovado</td>
                     <td>@item.DataCriacao.ToShortDateString()</td>
-                    <td><a href="../Comentario/Aprovar?id=@item.ID">Aprovar</a></td>
-                    <td><a href="">Remover</a></td>
+                    <td><a href="../Comentario/AprovarComentario?id=@item.ID" draggable="false">Aprovar</a></td>
+                    <td><a href="../Comentario/ReprovarComentario?id=@item.ID" draggable="false">Reprovar</a></td>
                 </tr>
                 }
             </tbody>

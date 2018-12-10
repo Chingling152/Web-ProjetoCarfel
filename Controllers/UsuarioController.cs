@@ -137,5 +137,11 @@ namespace Web_ProjetoCarfel.Controllers
             }
             return RedirectToAction("PaginaInicial");
         }
+
+        [HttpGet]
+        public IActionResult Mostrar(){
+            ViewData["Lista"] = database.Listar();
+            return View();
+        }
     }
 }

@@ -35,11 +35,33 @@ namespace Web_ProjetoCarfel.Repositorio
             /// </summary>
             /// <param name="comentario">Comentario a ser cadastrado no banco de dados</param>
             /// <returns>Retorna um objeto do tipo Comentario</returns>
-            public Comentario Cadastrar(Comentario comentario)
-            {
+            public Comentario Cadastrar(Comentario comentario){
                 Comentarios.Add(comentario);
                 Serializar();
                 return comentario;
+            }
+            /// <summary>
+            /// Seta o estado do comentario no ID selecionado para aprovado
+            /// </summary>
+            /// <param name="id">ID do comentario a ser aprovado</param>
+            public void Aprovar(string id){
+                int index = ProcurarIndex(int.Parse(id));
+                if(!Comentarios[index].Aprovado){
+                    Comentarios[index].Aprovado = true;
+                    Serializar();
+                }
+            }
+            /// <summary>
+            /// Seta o estado do comentario no ID selecionado para Reprovado
+            /// </summary>
+            /// <param name="id">ID do comentario a ser reprovado</param>
+            public void Reprovar(string id)
+            {
+                int index = ProcurarIndex(int.Parse(id));
+                if(Comentarios[index].Aprovado){
+                    Comentarios[index].Aprovado = false;
+                    Serializar();
+                }
             }
         #region Salvar e Carregar
             /// <summary>
@@ -49,7 +71,7 @@ namespace Web_ProjetoCarfel.Repositorio
             private void Serializar(){
                 MemoryStream memoria = new MemoryStream();
                 BinaryFormatter serializador = new BinaryFormatter();
-                serializador.Serialize(memoria,Comentarios);//serializa os objetos do tipo memoria 
+                serializador.Serialize(memoria,Comentarios); 
                 File.WriteAllBytes(caminho,memoria.ToArray());
                 Comentarios = Listar();
             }
@@ -64,21 +86,6 @@ namespace Web_ProjetoCarfel.Repositorio
                 return deserialisador.Deserialize(memoria) as List<Comentario>;
             }
         #endregion
-        /// <summary>
-            /// Seta o estado do comentario no ID selecionado para aprovado
-            /// </summary>
-            /// <param name="id">ID do comentario a ser aprovado</param>
-            /// <returns>Retorna true se o comentario foi arovado</returns>
-            public bool Aprovar(string id){
-                int index = ProcurarIndex(int.Parse(id));
-                if(!Comentarios[index].Aprovado){
-                    Comentarios[index].Aprovado = true;
-                    Serializar();
-                    return true;
-                }else{
-                    return false;
-                }
-            }
         #endregion
         #region Listar e Procura
             /// <summary>
@@ -155,6 +162,11 @@ namespace Web_ProjetoCarfel.Repositorio
                 List<Comentario> tempComentario = new List<Comentario>();
                 return tempComentario;
             }
+
+        public List<Comentario> ListarPrimeiros()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

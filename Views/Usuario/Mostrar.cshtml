@@ -1,0 +1,47 @@
+@using Web_ProjetoCarfel.Models;
+@{
+    List<Usuario> usuarios = ViewData["Lista"] as List<Usuario>;
+}
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/default.css">
+    <link rel="stylesheet" href="../CSS/AprovarComentarios.css">
+    <title>@ViewBag.Titulo</title>
+</head>
+<body>
+    <div class="content">
+        <a href="../Usuario/PaginaInicial">Voltar</a>
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Email</td>
+                    <td>Senha</td>
+                    <td>Data De Nascimento</td>
+                    <td>Data De Criação</td>
+                    <td>Ver Perfil</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Usuario item in usuarios){
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Email</td>
+                    <td>@item.Senha</td>
+                    <td>@item.dataNascimento.ToShortDateString()</td>
+                    <td>@item.dataCriacao.ToShortDateString()</td>
+                    <td><a href="../Usuario/Perfil?id=@item.ID">Ver Perfil</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
