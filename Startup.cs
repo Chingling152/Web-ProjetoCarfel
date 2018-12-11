@@ -15,8 +15,8 @@ namespace Web_ProjetoCarfel
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddSession(
+            services.AddMvc();//adiciona mvc
+            services.AddSession(//obsoleto , adiciona limite de seção
                 options => options.IdleTimeout = TimeSpan.FromMinutes(30)
             );
         }
@@ -29,8 +29,8 @@ namespace Web_ProjetoCarfel
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSession();
-            app.UseStaticFiles();
+            app.UseSession();//usa ssssssssss
+            app.UseStaticFiles();//permite usar arquivos externos (css/images entre outras bostas)
             
             app.UseMvc(
                 routes => routes.MapRoute(

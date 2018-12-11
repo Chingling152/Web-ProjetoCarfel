@@ -1,6 +1,6 @@
 /*menu*/
 .menu{
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .menu-option{

@@ -4,8 +4,6 @@
 }
 
 .polaroids > div{
-    display:grid;
-    grid-template-columns: 30% 70%;
     align-items: center;
 }
 
@@ -15,8 +13,9 @@
 
 /* Polaroid */
 .polaroid{
+    width: 75%;
     padding: 2em 2em 1em 2em;
-    margin: 1em 1em 1em 1em;
+    margin: 1em auto 2em auto;
 }
 
 .polaroid img , .polaroid div{
@@ -52,7 +51,10 @@
 } 
 
 #story{
+    margin:auto;
+    text-align: center;
     padding: 0em 5em 1em 5em;
+    max-width: 50%;
 }
 
 #story > h2{
@@ -78,7 +80,5 @@
 }
 
 @media screen and (max-width:1000px) {
-    body{
-        display: none;
-    }
+
 }
