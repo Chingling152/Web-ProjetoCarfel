@@ -58,3 +58,27 @@
 #story > h2{
     margin:1em 0em; 
 }
+
+@media screen and (max-width:1280px){
+    .polaroids > div:nth-child(2){
+        grid-template-columns: 65% 35.5%!important;
+    }
+    .polaroids > div{
+        grid-template-columns: 35% 65%;
+    }
+}
+
+@media screen and (max-width:1100px){
+    .polaroids > div{
+        grid-template-columns: 45% 55%;
+    }
+    .polaroids > div:nth-child(2){
+        grid-template-columns: 55% 45.5%!important;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    body{
+        display: none;
+    }
+}

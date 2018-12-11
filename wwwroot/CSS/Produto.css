@@ -52,3 +52,10 @@
 .benefit span{
     height: 1em;
 }
+
+
+@media screen and (max-width:1000px) {
+    body{
+        display: none;
+    }
+}
