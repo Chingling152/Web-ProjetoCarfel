@@ -230,7 +230,6 @@ form textarea{
     background-color: rgba(0, 0, 0, 0.8);   
     z-index: 1; 
     cursor: pointer;
-    padding-top:100px;
 }
 #login-cadastro > p, #login-cadastro > h2{
     text-align: center;
@@ -249,7 +248,7 @@ form textarea{
 }
 
 #registrar{
-    top: 100px;
+    top: 150px;
     right:350px;
 }
 

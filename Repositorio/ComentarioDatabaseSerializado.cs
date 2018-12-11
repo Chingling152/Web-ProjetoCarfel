@@ -160,12 +160,21 @@ namespace Web_ProjetoCarfel.Repositorio
             /// </summary>
             /// <returns>Retorna uma lista de comentarios ordenadas cronologicamente</returns>
             public List<Comentario> ListarOrdenado() => ListarAprovados().OrderByDescending(comment => comment.DataCriacao).ToList();
-
+            /// <summary>
+            /// Lista os primeiros comentarios aprovados 
+            /// </summary>
+            /// <returns></returns>
             public List<Comentario> ListarPrimeiros()
             {
                 List<Comentario> Retorno = new List<Comentario>();
                 for(int i = 0 ;i < 4 ;i++){
-                    Retorno.Add(Comentarios[i]);
+                    Comentario c = ListarOrdenado()[i];
+                    if(c == null){
+                        Retorno.Add(c);
+                    }else{
+                        break;
+                    }
+                    
                 }
                 return Retorno;
             }
