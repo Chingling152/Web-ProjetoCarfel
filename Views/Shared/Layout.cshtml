@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../CSS/default.css">
     <script src="../Javascript/default.js"></script>
     <title>@ViewBag.Titulo</title>
-    @if ( @TempData["Mensagem"] != null ){
-        <script charset="utf-8">
+    @if (@TempData["Mensagem"] != null ){
+        <script>
             let mensagem = '@TempData["Mensagem"].ToString()';
             alert(mensagem);
         </script>

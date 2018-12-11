@@ -161,20 +161,23 @@ namespace Web_ProjetoCarfel.Repositorio
             /// <returns>Retorna uma lista de comentarios ordenadas cronologicamente</returns>
             public List<Comentario> ListarOrdenado() => ListarAprovados().OrderByDescending(comment => comment.DataCriacao).ToList();
             /// <summary>
-            /// Lista os primeiros comentarios aprovados 
+            /// Lista os primeiros comentarios aprovados\ordenados
             /// </summary>
             /// <returns></returns>
             public List<Comentario> ListarPrimeiros()
             {
                 List<Comentario> Retorno = new List<Comentario>();
                 for(int i = 0 ;i < 4 ;i++){
-                    Comentario c = ListarOrdenado()[i];
-                    if(c == null){
-                        Retorno.Add(c);
-                    }else{
+                    try{
+                        Comentario c = ListarOrdenado()[i];
+                        
+                        if(c != null){
+                            Retorno.Add(c);
+                        }
+                    }catch(ArgumentOutOfRangeException exc){
+                        Console.WriteLine($"\n{exc.Message}\n");
                         break;
                     }
-                    
                 }
                 return Retorno;
             }
