@@ -324,6 +324,7 @@ footer{
     .header{
         flex-direction: column;
         background-color: cornflowerblue;
+        padding-bottom: 10px ;
     }
     .top{
         background-image: none;
@@ -346,5 +347,11 @@ footer{
     }
     .profile-pic{
         border: 3px solid cornflowerblue;
+    }
+    form input , textarea{
+        border: 1px solid cornflowerblue;
+    }
+    form input:last-child:hover , form textarea:hover{
+        background-color: rgba(100, 148, 237, 0.24);    
     }
 }
