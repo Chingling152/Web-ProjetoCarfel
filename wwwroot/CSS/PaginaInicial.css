@@ -1,16 +1,29 @@
 /*menu*/
-.menu{
-    justify-content: space-between;
-}
-
 .menu-option{
     margin:1em 1em;
-    max-height: 340px;
-    max-width: 25%;
+    height: 340px;
+    width: 30%;
+    background-size: cover;
+    background-position: center;
 }
 
+/*Fotos*/
+.menu > .menu-option:first-child{
+    background-image: url("../Resources/HomePage/home-page-1.jpg");
+    background-position: 40% 50%;
+}
+
+.menu > .menu-option:nth-child(2){
+    background-image: url("../Resources/HomePage/home-page-2.jpeg");
+}
+
+.menu > .menu-option:nth-child(3){
+    background-image: url("../Resources/HomePage/home-page-3.jpg");
+}
+/*Botões abaixo da foto*/
 .menu-option > div:last-child{
-    transform: translateY(-50px);
+    position: relative;
+    top: 82%;
     height: 20%;
     background-color: white;
     margin: -2px;
@@ -25,12 +38,6 @@
     background-color:#C9C9C9; 
 }
 
-.menu-option img{
-    background-position: center;
-    width: 100%;
-    height: 100%;
-}
-
 /*Comentarios*/
 
 section > a{
@@ -42,106 +49,24 @@ section > a:hover{
     color:#4F4D4D;
 }
 
-@media screen and (max-width:1350px){
-    .menu-option div:last-child{
-        transform: translateY(-40px);
-    }
-}
-
-@media screen and (max-width:920px){
-    .menu-option div:last-child{
-        transform: translateY(-30px);
-    }
-}
-
-@media screen and (max-width:840px){
-    .menu-option div:last-child{
-        transform: translateY(-30px);
-    }
-    .menu-option > div:last-child a{
-        font-size: 1.1em;
-    }
-}
-
-@media screen and (max-width:680px){
-    .menu{
-        flex-direction: column;
-    }
-
+@media screen and (max-width:1000px){
     .menu-option{
-        display: block;
-        max-width: 100%;
-    }
-
-    .menu-option div:last-child{
-        position: relative;
-        top: -88px;
-        height: 67px;
-    }
-
-    .menu-option > div:last-child a{
-        font-size: 1.6em;
+        height: 280px;
     }
 }
 
-@media screen and (max-width:610px){
-    .menu-option div:last-child{
-        position: relative;
-        top: -50px;
-        height: 67px;
-    }
+@media screen and (max-width:800px){
+    .menu-option{
+        height: 240px;
+    } 
 }
 
 @media screen and (max-width:600px){
-    .menu-option div:last-child{
-        position: relative;
-        top: -40px;
-        height: 67px;
+    .menu{
+        flex-direction: column;
+        align-items: center;
     }
-}
-
-@media screen and (max-width:550px){
-    .menu-option div:last-child{
-        position: relative;
-        top: 0px;
-        height: 67px;
-    }
-}
-
-@media screen and (max-width:500px){
     .menu-option{
-        max-height: 280px;
-    }
-    .menu-option div:last-child{
-        position: relative;
-        top: -30px;
-        height: 67px;
-    }
-}
-
-@media screen and (max-width:450px){
-    .menu-option{
-        max-height: 200px;
-    }
-    .menu-option div:last-child{
-        position: relative;
-        top: -56px;
-        height: 42px;
-    }
-    .menu-option > div:last-child a{
-        font-size: 1em;
-    }
-}
-
-@media screen and (max-width: 400px){
-    .menu-option div:last-child {
-        position: relative;
-        top: -18px;
-        height: 42px;
-    }
-    section > a {
-        color: black;
-        font-size: 1.1em;
-        font-weight: 700;
-    }
+        width: 80%;
+    } 
 }
