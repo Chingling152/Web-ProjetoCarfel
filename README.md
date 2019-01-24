@@ -69,7 +69,7 @@ Nela, o usuário apenas informará o comentário que deseja adicionar e cadastra
 A aprovação dos comentários deve ser realizadas **apenas pelo administrador** do sistema.
 No sistema, só existe um administrador do sistema. Os dados que serão atribuídos à ele são:
   - E-mail : admin@carfel.com
-  - Senha admin
+  - Senha admin  
 Haverá uma tela de aprovação de comentários. Nela, serão listados todos os comentários realizados que ainda não foram aprovados 
 (ordenados por data de cadastro do mais novo para o mais antigo). 
 Quando rejeitar: O comentário ficará marcado como rejeitado e será ocultado
